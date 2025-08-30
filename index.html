@@ -11,7 +11,7 @@
           padding: 0;
           background: #f5f5f5;
           color: #333;
-          scroll-behavior: smooth; /* Плавна прокрутка */
+          scroll-behavior: smooth; /* плавна прокрутка */
         }
 
         header {
@@ -50,6 +50,7 @@
           background: white;
           border-radius: 10px;
           box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          scroll-margin-top: 100px; /* для sticky header */
         }
 
         h2 {
@@ -72,7 +73,6 @@
           text-align: center;
         }
 
-        /* Кнопки для зовнішніх профілів */
         .profile-links a {
           display: inline-block;
           margin: 5px 10px;
@@ -87,7 +87,6 @@
         .profile-links a:hover {
           background-color: #45a049;
         }
-
     </style>
 </head>
 <body>
@@ -95,7 +94,7 @@
 <header>
     <h1>TARAS ANTONIUK</h1>
     <nav>
-        <a href="#about">Objective</a>
+        <a href="#about">About Me</a>
         <a href="#qualifications">Qualifications</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
@@ -114,15 +113,11 @@
     </div>
 </section>
 
-
-
 <section id="about">
     <h2>About Me</h2>
     <p>I am Taras Antoniuk, an experienced Backend Developer with over 19 years of expertise in ERP systems, complex data integration, and relational databases. I specialize in designing and delivering scalable, high-performance RESTFul APIs, with a recent focus (2024) on Java and Spring Boot.</p>
 
     <p>Throughout my career, I have optimized SQL queries, streamlined enterprise workflows, and built robust backend services that drive tangible business impact. I have extensive experience in microservices architecture, database design, and API development, ensuring solutions are maintainable, efficient, and secure.</p>
-
-    <p>My professional approach combines strong analytical skills, attention to detail, and a deep understanding of both business processes and technical requirements. I am passionate about creating software that not only meets functional needs but also enhances operational efficiency and user experience.</p>
 
     <p>Key areas of expertise include:
     <ul>
@@ -133,10 +128,7 @@
         <li>Tools and technologies: Maven, Git, Docker, Swagger/OpenAPI, Postman</li>
         <li>Analytical mindset applied to accounting, planning, and business workflows</li>
     </ul>
-
-    <p>I am always eager to take on challenging projects where I can leverage my technical skills and business insight to deliver impactful solutions. I thrive in environments that encourage continuous learning, innovation, and collaboration.</p>
 </section>
-
 
 <section id="qualifications">
     <h2>Summary of Qualifications</h2>
@@ -154,10 +146,8 @@
 
 <section id="experience">
     <h2>Professional Employment Experience</h2>
-    <p>Для докладного досвіду переходьте на <a href="experience.html">Experience Page</a></p>
-
+    <p>For full details, please visit the <a href="experience.html">Experience Page</a>.</p>
 </section>
-
 
 <section id="education">
     <h2>Education & Training</h2>
@@ -165,7 +155,7 @@
         National Technical University of Ukraine (2001 – 2013)</p>
 
     <h2>Certifications</h2>
-    <p>View all my professional certifications on the <a href="certificates.html">Certificates</a>.</p>
+    <p>View all my professional certifications on the <a href="certificates.html">Certificates Page</a>.</p>
 </section>
 
 <section id="skills">
