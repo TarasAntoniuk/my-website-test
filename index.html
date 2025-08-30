@@ -1,45 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Website</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: #333; }
-    header { background: #4CAF50; color: white; padding: 20px 0; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-    h2 { color: #4CAF50; }
-    footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 40px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taras Antoniuk - Backend Developer</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background: #f5f5f5;
+          color: #333;
+          scroll-behavior: smooth; /* Плавна прокрутка */
+        }
+
+        header {
+          background: #4CAF50;
+          color: white;
+          padding: 20px 0;
+          text-align: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+          margin-top: 10px;
+        }
+
+        nav a {
+          color: white;
+          text-decoration: none;
+          margin: 0 15px;
+          font-weight: bold;
+          padding: 6px 10px;
+          border-radius: 5px;
+          transition: background 0.3s;
+        }
+
+        nav a:hover {
+          background: rgba(255,255,255,0.2);
+        }
+
+        section {
+          max-width: 1200px;
+          margin: 60px auto;
+          padding: 30px;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+          color: #4CAF50;
+          border-bottom: 2px solid #eee;
+          padding-bottom: 8px;
+        }
+
+        ul { padding-left: 20px; }
+
+        footer {
+          text-align: center;
+          padding: 20px;
+          background: #333;
+          color: white;
+          margin-top: 40px;
+        }
+
+        .contact {
+          text-align: center;
+        }
+
+        /* Кнопки для зовнішніх профілів */
+        .profile-links a {
+          display: inline-block;
+          margin: 5px 10px;
+          padding: 6px 12px;
+          background-color: #4CAF50;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+          transition: background 0.3s;
+        }
+
+        .profile-links a:hover {
+          background-color: #45a049;
+        }
+
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Website!</h1>
+
+<header>
+    <h1>TARAS ANTONIUK</h1>
     <nav>
-      <a href="#about">About Me</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+        <a href="#about">Objective</a>
+        <a href="#qualifications">Qualifications</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="certificates.html">Certificates</a>
     </nav>
-  </header>
+</header>
 
-  <section id="about">
+<section class="contact">
+    <p>WhatsApp: +1 437 552-8217 | Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></p>
+    <div class="profile-links">
+        <a href="https://github.com/bronya2004" target="_blank">GitHub</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
+    </div>
+</section>
+
+
+
+<section id="about">
     <h2>About Me</h2>
-    <p>My name is Taras Antoniuk</p>
-  </section>
+    <p>I am Taras Antoniuk, an experienced Backend Developer with over 19 years of expertise in ERP systems, complex data integration, and relational databases. I specialize in designing and delivering scalable, high-performance RESTFul APIs, with a recent focus (2024) on Java and Spring Boot.</p>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>In nearest future you can write here about my super projects !</p>
-  </section>
+    <p>Throughout my career, I have optimized SQL queries, streamlined enterprise workflows, and built robust backend services that drive tangible business impact. I have extensive experience in microservices architecture, database design, and API development, ensuring solutions are maintainable, efficient, and secure.</p>
 
-  <section id="contact">
+    <p>My professional approach combines strong analytical skills, attention to detail, and a deep understanding of both business processes and technical requirements. I am passionate about creating software that not only meets functional needs but also enhances operational efficiency and user experience.</p>
+
+    <p>Key areas of expertise include:
+    <ul>
+        <li>Java Core, Collections, Spring Boot 3.X, Jakarta, JPA, Spring MVC, JDBC</li>
+        <li>REST API design and integration</li>
+        <li>SQL optimization, database modeling, and cross-database data exchange</li>
+        <li>ERP systems development and automation (1C, PeopleSoft)</li>
+        <li>Tools and technologies: Maven, Git, Docker, Swagger/OpenAPI, Postman</li>
+        <li>Analytical mindset applied to accounting, planning, and business workflows</li>
+    </ul>
+
+    <p>I am always eager to take on challenging projects where I can leverage my technical skills and business insight to deliver impactful solutions. I thrive in environments that encourage continuous learning, innovation, and collaboration.</p>
+</section>
+
+
+<section id="qualifications">
+    <h2>Summary of Qualifications</h2>
+    <ul>
+        <li>19 years of development experience, primarily in the fintech sector</li>
+        <li>10+ years working with object-oriented languages</li>
+        <li>4+ years of experience in RESTFul API and microservices development</li>
+        <li>Proficient in Java Core, Collections, Spring Boot 3.X, Jakarta, JPA, Spring MVC, JDBC</li>
+        <li>Experienced in Maven, Git, Docker, Docker Compose</li>
+        <li>Deep experience in database table design and query optimization</li>
+        <li>Strong SQL skills with PostgreSQL, Oracle, MS SQL</li>
+        <li>Extensive scripting experience and development using 1C, PeopleSoft frameworks</li>
+    </ul>
+</section>
+
+<section id="experience">
+    <h2>Professional Employment Experience</h2>
+    <p>Для докладного досвіду переходьте на <a href="experience.html">Experience Page</a></p>
+
+</section>
+
+
+<section id="education">
+    <h2>Education & Training</h2>
+    <p><strong>Bachelor’s Degree in Applied Mathematics</strong><br>
+        National Technical University of Ukraine (2001 – 2013)</p>
+
+    <h2>Certifications</h2>
+    <p>View all my professional certifications on the <a href="certificates.html">Certificates</a>.</p>
+</section>
+
+<section id="skills">
+    <h2>Technical Skills</h2>
+    <ul>
+        <li>Languages: Java, SQL, PeopleCode, PL/SQL, 1C, SQR</li>
+        <li>Frameworks: Spring Boot, Jakarta, JPA, JDBC, Hibernate</li>
+        <li>Databases: PostgreSQL, Oracle DB, MS SQL Server</li>
+        <li>Tools: Maven, Git, Docker, Swagger/OpenAPI, Postman, Fiddler</li>
+    </ul>
+</section>
+
+<section id="contact">
     <h2>Contact</h2>
-    <p>Email: example@tarasname.com</p>
-    <p>Telegram: @username</p>
-  </section>
+    <p>Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></p>
+    <p>WhatsApp: +1 437 552-8217</p>
+    <div class="profile-links">
+        <a href="https://github.com/bronya2004" target="_blank">GitHub</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
+    </div>
+</section>
 
-  <footer>
-    &copy; 2025 Taras. All rights reserved.
-  </footer>
+<footer>
+    &copy; 2025 Taras Antoniuk. All rights reserved.
+</footer>
+
 </body>
 </html>
