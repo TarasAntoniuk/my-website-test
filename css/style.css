@@ -1,0 +1,418 @@
+/* Загальні стилі для всього сайту */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+}
+
+/* Header та навігація */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+nav {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+nav a,
+nav .dropbtn {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-block;
+    cursor: pointer;
+}
+
+nav a:hover,
+nav .dropbtn:hover,
+nav a.active,
+nav .dropbtn.active {
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Dropdown стилі */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background: white;
+    border-radius: 0;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+    color: #667eea;
+    transform: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+}
+
+/* Секції */
+section,
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 30px;
+}
+
+section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* Заголовки */
+h2 {
+    color: #667eea;
+    font-size: 2em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+h3 {
+    color: #764ba2;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Списки */
+ul {
+    padding-left: 25px;
+    margin-top: 15px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Посилання */
+a {
+    color: #667eea;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #764ba2;
+}
+
+/* Профіль секція (для index.html) */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    flex: 0 0 250px;
+    text-align: center;
+}
+
+.profile-photo img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #667eea;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-info h2 {
+    color: #667eea;
+    font-size: 2em;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.profile-info p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-info a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.profile-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.profile-links a {
+    display: inline-block;
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.profile-links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Experience блоки */
+.experience {
+    background: white;
+    padding: 35px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+}
+
+.experience h2 {
+    margin: 0 0 8px;
+    color: #667eea;
+    font-size: 1.8em;
+    border: none;
+}
+
+.experience h3 {
+    margin: 0 0 20px;
+    font-weight: 500;
+    color: #764ba2;
+    font-size: 1.1em;
+}
+
+/* Сертифікати */
+.certificate {
+    background: white;
+    margin-bottom: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+}
+
+.certificate img {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 10px;
+    border: 3px solid #667eea;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.certificate p {
+    font-weight: 700;
+    margin: 10px 0;
+    color: #667eea;
+    font-size: 1.3em;
+}
+
+.certificate ul {
+    text-align: left;
+    padding-left: 30px;
+    margin: 15px auto;
+    max-width: 700px;
+    color: #555;
+}
+
+.certificate a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.certificate a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Проекти */
+.project-card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+}
+
+.project-card h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.project-card a {
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    nav a,
+    nav .dropbtn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .dropdown-content {
+        min-width: 180px;
+    }
+
+    .dropdown-content a {
+        padding: 10px 14px;
+        font-size: 0.9em;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-photo {
+        flex: 0 0 200px;
+    }
+
+    .profile-photo img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .contact-info,
+    .profile-links {
+        justify-content: center;
+    }
+
+    section,
+    .container {
+        padding: 25px 20px;
+    }
+
+    .experience,
+    .certificate,
+    .project-card {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+}

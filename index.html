@@ -4,113 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taras Antoniuk - Backend Developer</title>
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          background: #f5f5f5;
-          color: #333;
-          scroll-behavior: smooth;
-        }
-
-        header {
-          background: #4CAF50;
-          color: white;
-          padding: 20px 0;
-          text-align: center;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        nav {
-          margin-top: 10px;
-        }
-
-        nav a {
-          color: white;
-          text-decoration: none;
-          margin: 0 15px;
-          font-weight: bold;
-          padding: 6px 10px;
-          border-radius: 5px;
-          transition: background 0.3s;
-        }
-
-        nav a:hover {
-          background: rgba(255,255,255,0.2);
-        }
-
-        section {
-          max-width: 1200px;
-          margin: 60px auto;
-          padding: 30px;
-          background: white;
-          border-radius: 10px;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-          scroll-margin-top: 100px;
-        }
-
-        h2 {
-          color: #4CAF50;
-          border-bottom: 2px solid #eee;
-          padding-bottom: 8px;
-        }
-
-        ul { padding-left: 20px; }
-
-        footer {
-          text-align: center;
-          padding: 20px;
-          background: #333;
-          color: white;
-          margin-top: 40px;
-        }
-
-        .contact {
-          text-align: center;
-        }
-
-        .profile-links a {
-          display: inline-block;
-          margin: 5px 10px;
-          padding: 6px 12px;
-          background-color: #4CAF50;
-          color: white;
-          text-decoration: none;
-          border-radius: 5px;
-          transition: background 0.3s;
-        }
-
-        .profile-links a:hover {
-          background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>TARAS ANTONIUK</h1>
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#qualifications">Qualifications</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-        <a href="certificates.html">Certificates</a>
-        <a href="projects.html">Projects</a>
-    </nav>
-</header>
+<header data-title="TARAS ANTONIUK" data-page="index"></header>
 
-<section class="contact">
-    <p>WhatsApp: +1 437 552-8217 | Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></p>
-    <div class="profile-links">
-        <a href="https://github.com/TarasAntoniuk/" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank">LinkedIn</a>
-        <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
+<section class="profile-section">
+    <div class="profile-photo">
+        <img src="images/profile.jpg" alt="Taras Antoniuk">
+    </div>
+    <div class="profile-info">
+        <h2>Backend Developer</h2>
+        <p>19+ years of expertise in ERP systems, API development, and database optimization</p>
+        <div class="contact-info">
+            <span>📱 WhatsApp: +1 437 552-8217</span>
+            <span>✉️ Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></span>
+        </div>
+        <div class="profile-links">
+            <a href="https://github.com/TarasAntoniuk/" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank">LinkedIn</a>
+            <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
+        </div>
     </div>
 </section>
 
@@ -120,7 +35,7 @@
 
     <p>Throughout my career, I have optimized SQL queries, streamlined enterprise workflows, and built robust backend services that drive tangible business impact. I have extensive experience in microservices architecture, database design, and API development, ensuring solutions are maintainable, efficient, and secure.</p>
 
-    <p>Key areas of expertise include:
+    <p><strong>Key areas of expertise include:</strong></p>
     <ul>
         <li>Java Core, Collections, Spring Boot 3.X, Jakarta, JPA, Spring MVC, JDBC</li>
         <li>REST API design and integration</li>
@@ -147,41 +62,30 @@
 
 <section id="experience">
     <h2>Professional Employment Experience</h2>
-    <p>For full details, please visit the <a href="experience.html">My Experience</a>.</p>
+    <p>For full details, please visit the <a href="experience.html">Experience page</a>.</p>
 </section>
 
 <section id="education">
     <h2>Education & Training</h2>
-    <p><strong>Bachelor’s Degree in Applied Mathematics</strong><br>
+    <p><strong>Bachelor's Degree in Applied Mathematics</strong><br>
         National Technical University of Ukraine (2001 – 2013)</p>
 
-    <h2>Certifications</h2>
-    <p>View all my professional certifications on the <a href="certificates.html">My Certificates</a>.</p>
+    <h2 style="margin-top: 30px;">Certifications</h2>
+    <p>View all my professional certifications on the <a href="certificates.html">Certificates page</a>.</p>
 </section>
 
 <section id="skills">
     <h2>Technical Skills</h2>
     <ul>
-        <li>Languages: Java, SQL, PeopleCode, PL/SQL, 1C, SQR</li>
-        <li>Frameworks: Spring Boot, Jakarta, JPA, JDBC, Hibernate</li>
-        <li>Databases: PostgreSQL, Oracle DB, MS SQL Server</li>
-        <li>Tools: Maven, Git, Docker, Swagger/OpenAPI, Postman, Fiddler</li>
+        <li><strong>Languages:</strong> Java, SQL, PeopleCode, PL/SQL, 1C, SQR</li>
+        <li><strong>Frameworks:</strong> Spring Boot, Jakarta, JPA, JDBC, Hibernate</li>
+        <li><strong>Databases:</strong> PostgreSQL, Oracle DB, MS SQL Server</li>
+        <li><strong>Tools:</strong> Maven, Git, Docker, Swagger/OpenAPI, Postman, Fiddler</li>
     </ul>
 </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>WhatsApp: +1 437 552-8217 | Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></p>
-    <div class="profile-links">
-        <a href="https://github.com/TarasAntoniuk/" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank">LinkedIn</a>
-        <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
-    </div>
-</section>
+<footer></footer>
 
-<footer>
-    &copy; 2025 Taras Antoniuk. All rights reserved.
-</footer>
-
+<script src="js/menu.js"></script>
 </body>
 </html>

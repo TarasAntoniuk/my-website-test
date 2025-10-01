@@ -3,111 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects - Taras Antoniuk</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-        header {
-            background: #4CAF50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav {
-            margin-top: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            padding: 6px 10px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            scroll-margin-top: 100px;
-        }
-        h2 {
-            color: #4CAF50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: white;
-            margin-top: 40px;
-        }
-        .project-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .project-item {
-            margin-bottom: 15px;
-        }
-        .project-item a {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        .project-item a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Projects - Taras Antoniuk</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>My Projects</h1>
-    <nav>
-        <a href="index.html#about">About Me</a>
-        <a href="index.html#qualifications">Qualifications</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="index.html#education">Education</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="certificates.html">Certificates</a>
-        <a href="index.html">Home</a>
-    </nav>
-</header>
+<header data-title="My Projects" data-page="projects"></header>
 
-<section>
-    <h2>Current Projects</h2>
-    <p>This page is currently under development. Meanwhile, you can check my repositories on GitHub:</p>
-    <ul class="project-list">
-        <li class="project-item">
-            <a href="https://github.com/TarasAntoniuk/entity-generator" target="_blank">entity-generator</a> — JPA entity generator for PostgreSQL databases.
-        </li>
-    </ul>
-    <p>All my projects are available on my GitHub profile: <a href="https://github.com/TarasAntoniuk" target="_blank">https://github.com/TarasAntoniuk</a></p>
-</section>
+<div class="container">
+    <section>
+        <h2>Current Projects</h2>
+        <p>This page is currently under development. Meanwhile, you can check my repositories on GitHub:</p>
 
-<footer>
-    &copy; 2025 Taras Antoniuk. All rights reserved.
-</footer>
+        <div class="project-card">
+            <h3>entity-generator</h3>
+            <p>JPA entity generator for PostgreSQL databases.</p>
+            <p><a href="https://github.com/TarasAntoniuk/entity-generator" target="_blank">View on GitHub →</a></p>
+        </div>
 
+        <div class="project-card">
+            <h3>All Projects</h3>
+            <p>Explore all my projects and contributions on my GitHub profile:</p>
+            <p><a href="https://github.com/TarasAntoniuk" target="_blank">https://github.com/TarasAntoniuk →</a></p>
+        </div>
+    </section>
+</div>
+
+<footer></footer>
+
+<script src="js/menu.js"></script>
 </body>
 </html>
