@@ -13,19 +13,18 @@ const menuStructure = [
     },
     { text: 'Experience', href: 'experience.html', page: 'experience' },
     { text: 'Certificates', href: 'certificates.html', page: 'certificates' },
-    { text: 'Projects', href: 'projects.html', page: 'projects' }
+    { text: 'Projects', href: 'projects.html', page: 'projects' },
+    { text: 'Exchange Rates', href: 'exchange-rates.html', page: 'exchange-rates' }
 ];
 
 // Функція для створення меню
 function createMenu(currentPage) {
     const nav = document.querySelector('nav');
-
     menuStructure.forEach(item => {
         if (item.submenu) {
             // Створюємо dropdown
             const dropdown = document.createElement('div');
             dropdown.className = 'dropdown';
-
             const dropbtn = document.createElement('a');
             dropbtn.href = '#';
             dropbtn.textContent = item.text;
@@ -33,17 +32,14 @@ function createMenu(currentPage) {
             if (item.page === currentPage) {
                 dropbtn.classList.add('active');
             }
-
             const dropdownContent = document.createElement('div');
             dropdownContent.className = 'dropdown-content';
-
             item.submenu.forEach(subitem => {
                 const sublink = document.createElement('a');
                 sublink.href = subitem.href;
                 sublink.textContent = subitem.text;
                 dropdownContent.appendChild(sublink);
             });
-
             dropdown.appendChild(dropbtn);
             dropdown.appendChild(dropdownContent);
             nav.appendChild(dropdown);
@@ -52,11 +48,9 @@ function createMenu(currentPage) {
             const link = document.createElement('a');
             link.href = item.href;
             link.textContent = item.text;
-
             if (item.page === currentPage) {
                 link.classList.add('active');
             }
-
             nav.appendChild(link);
         }
     });
@@ -68,7 +62,6 @@ function createHeader(pageTitle, currentPage) {
         <h1>${pageTitle}</h1>
         <nav></nav>
     `;
-
     const header = document.querySelector('header');
     if (header) {
         header.innerHTML = headerHTML;
@@ -93,6 +86,5 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPage = header.dataset.page || 'index';
         createHeader(pageTitle, currentPage);
     }
-
     createFooter();
 });
