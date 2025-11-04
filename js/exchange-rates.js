@@ -95,6 +95,9 @@ function displayRates(data) {
         const exchangeDate = item.exchangeDate;
         const rate = item.rate;
 
+        // Format date to European format (dd/mm/yyyy)
+        const formattedDate = new Date(exchangeDate + 'T00:00:00').toLocaleDateString('en-GB');
+
         // Format rate based on value
         let formattedRate;
         if (rate >= 100) {
