@@ -1,7 +1,7 @@
-// Елементи DOM
+// DOM elements
 let dateInput, loadingMessage, errorMessage, ratesTable, ratesBody;
 
-// Ініціалізація після завантаження DOM
+// Initialize after DOM loading
 document.addEventListener('DOMContentLoaded', function() {
     dateInput = document.getElementById('rateDate');
     loadingMessage = document.getElementById('loadingMessage');
@@ -9,23 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
     ratesTable = document.getElementById('ratesTable');
     ratesBody = document.getElementById('ratesBody');
 
-    // Встановлюємо сьогоднішню дату як максимальну та за замовчуванням
+    // Set today's date as maximum and default
     const today = new Date().toISOString().split('T')[0];
     dateInput.max = today;
     dateInput.value = today;
 
-    // Завантажуємо курси при зміні дати
+    // Load rates when date changes
     dateInput.addEventListener('change', function() {
         fetchCurrencyRates(this.value);
     });
 
-    // Завантажуємо курси при завантаженні сторінки
+    // Load rates on page load
     fetchCurrencyRates(today);
 });
 
 /**
- * Отримує курси валют з API за вказаною датою
- * @param {string} date - Дата у форматі YYYY-MM-DD
+ * Fetches currency rates from API for specified date
+ * @param {string} date - Date in YYYY-MM-DD format
  */
 async function fetchCurrencyRates(date) {
     try {
@@ -35,14 +35,10 @@ async function fetchCurrencyRates(date) {
         errorMessage.style.display = 'none';
         ratesTable.style.display = 'none';
 
-        const url = `https://api.tarasantoniuk.com/api/exchange-rates/date/${date}`;
+        // EUR currency ID = 2
+        const euroId = 2;
+        const url = `https://api.tarasantoniuk.com/api/exchange-rates/latest/${date}?currencyFromId=${euroId}`;
         console.log('API URL:', url);
-
-//        // Тимчасово використовуємо CORS proxy (видаліть після налаштування CORS на сервері)
-//        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
-//        console.log('Using proxy:', proxyUrl);
-//
-//        const response = await fetch(proxyUrl);
 
         const response = await fetch(url);
 
@@ -70,8 +66,8 @@ async function fetchCurrencyRates(date) {
 }
 
 /**
- * Відображає курси валют у таблиці
- * @param {Array} data - Масив даних про курси валют
+ * Displays currency rates in the table
+ * @param {Array} data - Array of currency rate data
  */
 function displayRates(data) {
     ratesBody.innerHTML = '';
@@ -83,7 +79,7 @@ function displayRates(data) {
         return;
     }
 
-    // Сортуємо валюти за кодом
+    // Sort currencies by code
     const sortedData = data.sort((a, b) =>
         a.currencyTo.code.localeCompare(b.currencyTo.code)
     );
@@ -99,7 +95,7 @@ function displayRates(data) {
         const exchangeDate = item.exchangeDate;
         const rate = item.rate;
 
-        // Форматуємо курс залежно від значення
+        // Format rate based on value
         let formattedRate;
         if (rate >= 100) {
             formattedRate = rate.toFixed(2);
