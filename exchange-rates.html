@@ -52,6 +52,7 @@
             color: #667eea;
         }
 
+        .date-selector input[type="text"],
         .date-selector input[type="date"] {
             padding: 10px 20px;
             border: 2px solid #667eea;
@@ -60,8 +61,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: all 0.3s ease;
             background: white;
+            min-width: 150px;
         }
 
+        .date-selector input[type="text"]:focus,
         .date-selector input[type="date"]:focus {
             outline: none;
             border-color: #764ba2;
@@ -200,8 +203,8 @@
 
 <footer></footer>
 
-<script src="js/menu.js"></script>
-<script src="js/exchange-rates.js"></script>
+<script src="js/menu.js?v=1.1"></script>
+<script src="js/exchange-rates.js?v=1.1"></script>
 
 </body>
 </html>
