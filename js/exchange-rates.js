@@ -9,111 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
     ratesTable = document.getElementById('ratesTable');
     ratesBody = document.getElementById('ratesBody');
 
-    // Set today's date in dd/mm/yyyy format
-    const today = new Date();
-    const formattedToday = formatDateToDisplay(today);
-    dateInput.value = formattedToday;
+    // Set today's date as maximum and default
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.max = today;
+    dateInput.value = today;
 
-    // Add date input mask and validation
-    dateInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-
-        if (value.length >= 2) {
-            value = value.substring(0, 2) + '/' + value.substring(2);
-        }
-        if (value.length >= 5) {
-            value = value.substring(0, 5) + '/' + value.substring(5, 9);
-        }
-
-        e.target.value = value;
-    });
-
-    // Load rates when Enter is pressed or input loses focus
-    dateInput.addEventListener('blur', function() {
-        validateAndFetchRates(this.value);
-    });
-
-    dateInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            validateAndFetchRates(this.value);
-        }
+    // Load rates when date changes
+    dateInput.addEventListener('change', function() {
+        fetchCurrencyRates(this.value);
     });
 
     // Load rates on page load
-    fetchCurrencyRates(formatDateToAPI(today));
+    fetchCurrencyRates(today);
 });
-
-/**
- * Format Date object to dd/mm/yyyy string
- * @param {Date} date - Date object
- * @returns {string} - Formatted date string
- */
-function formatDateToDisplay(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-}
-
-/**
- * Format Date object to yyyy-mm-dd string for API
- * @param {Date} date - Date object
- * @returns {string} - Formatted date string
- */
-function formatDateToAPI(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${year}-${month}-${day}`;
-}
-
-/**
- * Parse dd/mm/yyyy string to yyyy-mm-dd format
- * @param {string} dateString - Date in dd/mm/yyyy format
- * @returns {string|null} - Date in yyyy-mm-dd format or null if invalid
- */
-function parseDateString(dateString) {
-    const parts = dateString.split('/');
-    if (parts.length !== 3) return null;
-
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10);
-    const year = parseInt(parts[2], 10);
-
-    // Validate ranges
-    if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2100) {
-        return null;
-    }
-
-    // Check if date is not in the future
-    const inputDate = new Date(year, month - 1, day);
-    const today = new Date();
-    today.setHours(23, 59, 59, 999);
-
-    if (inputDate > today) {
-        return null;
-    }
-
-    return formatDateToAPI(inputDate);
-}
-
-/**
- * Validate date input and fetch rates
- * @param {string} dateString - Date string in dd/mm/yyyy format
- */
-function validateAndFetchRates(dateString) {
-    const apiDate = parseDateString(dateString);
-
-    if (!apiDate) {
-        errorMessage.textContent = 'Invalid date format. Please use dd/mm/yyyy and ensure the date is not in the future.';
-        errorMessage.style.display = 'block';
-        ratesTable.style.display = 'none';
-        loadingMessage.style.display = 'none';
-        return;
-    }
-
-    fetchCurrencyRates(apiDate);
-}
 
 /**
  * Fetches currency rates from API for specified date
