@@ -1,20 +1,20 @@
 // Структура меню з підменю
 const menuStructure = [
-    { text: 'Home', href: 'index.html', page: 'index' },
+    { text: 'Home', href: '/index.html', page: 'index' },
     {
         text: 'About',
         page: 'index',
         submenu: [
-            { text: 'About Me', href: 'index.html#about' },
-            { text: 'Qualifications', href: 'index.html#qualifications' },
-            { text: 'Education', href: 'index.html#education' },
-            { text: 'Skills', href: 'index.html#skills' }
+            { text: 'About Me', href: '/index.html#about' },
+            { text: 'Qualifications', href: '/index.html#qualifications' },
+            { text: 'Education', href: '/index.html#education' },
+            { text: 'Skills', href: '/index.html#skills' }
         ]
     },
-    { text: 'Experience', href: 'experience.html', page: 'experience' },
-    { text: 'Certificates', href: 'certificates.html', page: 'certificates' },
-    { text: 'Projects', href: 'projects.html', page: 'projects' },
-    { text: 'Exchange Rates', href: 'exchange-rates.html', page: 'exchange-rates' }
+    { text: 'Experience', href: '/experience.html', page: 'experience' },
+    { text: 'Certificates', href: '/certificates.html', page: 'certificates' },
+    { text: 'Projects', href: '/projects.html', page: 'projects' },
+    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' }
 ];
 
 // Функція для створення меню

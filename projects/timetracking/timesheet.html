@@ -6,16 +6,19 @@
     <title>Timesheet Calculator - Time Tracking System</title>
     <link rel="stylesheet" href="../../css/style.css">
     <style>
-        .controls {
+        .date-section {
             background: white;
-            padding: 30px;
+            padding: 25px 30px;
             border-radius: 15px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             margin-bottom: 30px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .date-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
         }
 
         .form-group label {
@@ -23,10 +26,10 @@
             margin-bottom: 8px;
             color: #667eea;
             font-weight: 600;
+            font-size: 1em;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -35,40 +38,103 @@
             transition: border-color 0.3s ease;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #667eea;
         }
 
-        .date-range {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .employees-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            margin-bottom: 30px;
         }
 
-        .btn-primary {
-            padding: 12px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            color: #667eea;
+            font-size: 1.5em;
+        }
+
+        .employee-count {
+            color: #764ba2;
             font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .employee-list {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .employee-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        .employee-item:last-child {
+            border-bottom: none;
         }
 
-        .btn-primary:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
+        .employee-item:hover {
+            background: #f5f7fa;
+        }
+
+        .employee-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .employee-number {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #667eea;
+            margin-right: 15px;
+            min-width: 40px;
+        }
+
+        .employee-item.active .employee-number {
+            color: white;
+        }
+
+        .employee-info {
+            flex: 1;
+        }
+
+        .employee-full-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .employee-item.active .employee-full-name {
+            color: white;
+            font-weight: 900;
+        }
+
+        .employee-id-small {
+            font-size: 0.85em;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .employee-item.active .employee-id-small {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .results {
@@ -230,7 +296,7 @@
             }
 
             .timesheet-table {
-                font-size: 0.9em;
+                font-size: 0.85em;
             }
 
             .timesheet-table th,
@@ -238,8 +304,13 @@
                 padding: 10px 8px;
             }
 
-            .employee-header {
-                padding: 20px;
+            .employee-item {
+                padding: 12px 15px;
+            }
+
+            .employee-number {
+                font-size: 1em;
+                min-width: 35px;
             }
         }
     </style>
@@ -251,37 +322,40 @@
 <div class="container">
     <a href="index.html" class="back-link">← Back to Time Tracking</a>
 
-    <section class="controls">
-        <h2>📊 Employee Timesheet Calculator</h2>
-        <p style="color: #555; margin-bottom: 25px;">
-            Calculate worked hours for any employee within a specified time period.
+    <!-- DATE SELECTION - TOP -->
+    <section class="date-section">
+        <h2 style="margin: 0 0 5px 0; color: #667eea;">📊 Timesheet Calculator</h2>
+        <p style="color: #555; margin-bottom: 20px; font-size: 0.95em;">
+            Select date range and click on an employee to view their timesheet. By default, November 2024 is selected as test data is available for this period.
         </p>
-
-        <div class="form-group">
-            <label for="employeeSelect">Select Employee:</label>
-            <select id="employeeSelect" required>
-                <option value="">-- Loading employees --</option>
-            </select>
-        </div>
-
         <div class="date-range">
             <div class="form-group">
                 <label for="fromDate">From Date:</label>
-                <input type="date" id="fromDate" required>
+                <input type="date" id="fromDate" onchange="onDateChange()">
             </div>
             <div class="form-group">
                 <label for="toDate">To Date:</label>
-                <input type="date" id="toDate" required>
+                <input type="date" id="toDate" onchange="onDateChange()">
             </div>
         </div>
-
-        <button class="btn-primary" onclick="generateTimesheet()">Generate Timesheet</button>
-
-        <div id="error" style="display: none;" class="error"></div>
+        <div id="dateError" style="display: none; margin-top: 15px;" class="error"></div>
     </section>
 
+    <!-- EMPLOYEES LIST - MIDDLE -->
+    <section class="employees-section">
+        <div class="section-header">
+            <h3>Select Employee:</h3>
+            <span class="employee-count" id="employeeCount">Loading...</span>
+        </div>
+
+        <div id="loadingEmployees" class="loading">Loading employees</div>
+        <div id="employeeError" style="display: none;" class="error"></div>
+        <div class="employee-list" id="employeeList" style="display: none;"></div>
+    </section>
+
+    <!-- TIMESHEET RESULTS - BOTTOM -->
     <section class="results" id="results" style="display: none;">
-        <div id="loading" class="loading" style="display: none;">
+        <div id="loadingTimesheet" class="loading" style="display: none;">
             Calculating timesheet
         </div>
 
@@ -299,19 +373,19 @@
 <script src="../../js/menu.js"></script>
 <script>
     const API_BASE = 'https://timetracking.tarasantoniuk.com/api';
+    let allEmployees = [];
+    let selectedEmployeeId = null;
 
-    // Load employees on page load
+    // Initialize on page load
     window.addEventListener('DOMContentLoaded', () => {
-        loadEmployees();
         setDefaultDates();
+        loadEmployees();
     });
 
     function setDefaultDates() {
-        const today = new Date();
-        const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-        
-        document.getElementById('fromDate').value = formatDate(firstDayOfMonth);
-        document.getElementById('toDate').value = formatDate(today);
+        // Set to November 2024 (test data period)
+        document.getElementById('fromDate').value = '2024-11-01';
+        document.getElementById('toDate').value = '2024-11-30';
     }
 
     function formatDate(date) {
@@ -321,64 +395,119 @@
         return `${year}-${month}-${day}`;
     }
 
+    function onDateChange() {
+        const fromDate = document.getElementById('fromDate').value;
+        const toDate = document.getElementById('toDate').value;
+
+        if (fromDate && toDate && new Date(fromDate) > new Date(toDate)) {
+            showDateError('From date must be before to date');
+        } else {
+            hideDateError();
+
+            // If employee is selected, auto-refresh timesheet
+            if (selectedEmployeeId) {
+                generateTimesheet(selectedEmployeeId);
+            }
+        }
+    }
+
     async function loadEmployees() {
-        const select = document.getElementById('employeeSelect');
-        
+        const loadingDiv = document.getElementById('loadingEmployees');
+        const list = document.getElementById('employeeList');
+
         try {
             const response = await fetch(`${API_BASE}/employees`);
-            
+
             if (!response.ok) {
                 throw new Error('Failed to load employees');
             }
 
-            const employees = await response.json();
-            
-            select.innerHTML = '<option value="">-- Select an employee --</option>';
-            
-            employees.forEach(emp => {
-                const option = document.createElement('option');
-                option.value = emp.id;
-                option.textContent = `${emp.firstName} ${emp.lastName} (ID: ${emp.id})`;
-                select.appendChild(option);
-            });
+            allEmployees = await response.json();
+
+            loadingDiv.style.display = 'none';
+
+            if (allEmployees.length === 0) {
+                showEmployeeError('No employees found in the system');
+                return;
+            }
+
+            displayEmployeeList(allEmployees);
+            list.style.display = 'block';
+
+            document.getElementById('employeeCount').textContent =
+                `${allEmployees.length} ${allEmployees.length === 1 ? 'employee' : 'employees'}`;
+
         } catch (error) {
             console.error('Error loading employees:', error);
-            select.innerHTML = '<option value="">-- Error loading employees --</option>';
-            showError('Failed to load employee list. Please refresh the page.');
+            loadingDiv.style.display = 'none';
+            showEmployeeError('Failed to load employee list. Please refresh the page.');
         }
     }
 
-    async function generateTimesheet() {
-        const employeeId = document.getElementById('employeeSelect').value;
+    function displayEmployeeList(employees) {
+        const list = document.getElementById('employeeList');
+        list.innerHTML = '';
+
+        employees.forEach((emp, index) => {
+            const item = document.createElement('div');
+            item.className = 'employee-item';
+            item.id = `employee-${emp.id}`;
+            item.onclick = () => onEmployeeClick(emp);
+            item.innerHTML = `
+                <div class="employee-number">${index + 1}.</div>
+                <div class="employee-info">
+                    <span class="employee-full-name">${emp.firstName} ${emp.lastName}</span>
+                    <span class="employee-id-small">(ID: ${emp.id})</span>
+                </div>
+            `;
+            list.appendChild(item);
+        });
+    }
+
+    function onEmployeeClick(employee) {
+        // Validate dates first
         const fromDate = document.getElementById('fromDate').value;
         const toDate = document.getElementById('toDate').value;
 
-        if (!employeeId) {
-            showError('Please select an employee');
-            return;
-        }
-
         if (!fromDate || !toDate) {
-            showError('Please select both from and to dates');
+            showDateError('Please select both from and to dates');
+            document.getElementById('fromDate').focus();
             return;
         }
 
         if (new Date(fromDate) > new Date(toDate)) {
-            showError('From date must be before to date');
+            showDateError('From date must be before to date');
             return;
         }
 
-        hideError();
-        showLoading();
+        // Update active employee
+        selectedEmployeeId = employee.id;
+
+        // Update UI - highlight selected employee
+        document.querySelectorAll('.employee-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.getElementById(`employee-${employee.id}`).classList.add('active');
+
+        // Generate timesheet
+        generateTimesheet(employee.id);
+    }
+
+    async function generateTimesheet(employeeId) {
+        const fromDate = document.getElementById('fromDate').value;
+        const toDate = document.getElementById('toDate').value;
+
+        showLoadingTimesheet();
+        hideDateError();
 
         try {
             const fromDateTime = `${fromDate}T00:00:00`;
             const toDateTime = `${toDate}T23:59:59`;
-            
+
             const url = `${API_BASE}/time-logs/timesheet?employee_id=${employeeId}&from=${encodeURIComponent(fromDateTime)}&to=${encodeURIComponent(toDateTime)}`;
-            
+
             const response = await fetch(url);
-            
+
             if (!response.ok) {
                 throw new Error(`API error: ${response.status}`);
             }
@@ -387,10 +516,10 @@
             displayTimesheet(data);
         } catch (error) {
             console.error('Error:', error);
-            showError('Failed to generate timesheet. Please check your inputs and try again.');
+            showDateError('Failed to generate timesheet. Please try again.');
             hideResults();
         } finally {
-            hideLoading();
+            hideLoadingTimesheet();
         }
     }
 
@@ -401,6 +530,11 @@
 
         resultsSection.style.display = 'block';
 
+        // Scroll to results
+        setTimeout(() => {
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
         if (!data.dailyRecords || data.dailyRecords.length === 0) {
             emptyState.style.display = 'block';
             timesheetData.innerHTML = '';
@@ -409,26 +543,19 @@
 
         emptyState.style.display = 'none';
 
-        // Employee header
+        // Employee header - compact version
         const employeeHeader = `
             <div class="employee-header">
-                <h3>${data.firstName} ${data.lastName}</h3>
-                <p><strong>Employee ID:</strong> ${data.employeeId}</p>
-                <p><strong>Period:</strong> ${formatDisplayDate(data.from)} to ${formatDisplayDate(data.to)}</p>
-            </div>
-        `;
-
-        // Summary box
-        const summary = `
-            <div class="summary-box">
-                <h4>Summary</h4>
-                <div class="summary-item">
-                    <span class="label">Total Hours Worked:</span>
-                    <span class="value">${data.totalHours}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label">Total Days:</span>
-                    <span class="value">${data.dailyRecords.length}</span>
+                <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <h3 style="margin: 0 0 10px 0;">${data.firstName} ${data.lastName}</h3>
+                        <p style="margin: 0;"><strong>ID:</strong> ${data.employeeId} | <strong>Period:</strong> ${formatDisplayDate(data.from)} - ${formatDisplayDate(data.to)}</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.9em; opacity: 0.9; margin-bottom: 5px;">Total Hours</div>
+                        <div style="font-size: 2em; font-weight: 700;">${data.totalHours}</div>
+                        <div style="font-size: 0.9em; opacity: 0.9;">${data.dailyRecords.length} ${data.dailyRecords.length === 1 ? 'day' : 'days'}</div>
+                    </div>
                 </div>
             </div>
         `;
@@ -464,22 +591,22 @@
             </table>
         `;
 
-        timesheetData.innerHTML = employeeHeader + summary + table;
+        timesheetData.innerHTML = employeeHeader + table;
     }
 
     function formatDisplayDate(dateString) {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'short', 
-            day: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
         });
     }
 
     function formatTime(time) {
         if (!time) return '--';
         if (typeof time === 'string') return time;
-        
+
         // Handle LocalTime object
         const hour = String(time.hour || 0).padStart(2, '0');
         const minute = String(time.minute || 0).padStart(2, '0');
@@ -487,22 +614,30 @@
         return `${hour}:${minute}:${second}`;
     }
 
-    function showLoading() {
-        document.getElementById('loading').style.display = 'block';
+    function showLoadingTimesheet() {
+        document.getElementById('loadingTimesheet').style.display = 'block';
+        document.getElementById('results').style.display = 'block';
     }
 
-    function hideLoading() {
-        document.getElementById('loading').style.display = 'none';
+    function hideLoadingTimesheet() {
+        document.getElementById('loadingTimesheet').style.display = 'none';
     }
 
-    function showError(message) {
-        const errorDiv = document.getElementById('error');
+    function showDateError(message) {
+        const errorDiv = document.getElementById('dateError');
         errorDiv.textContent = message;
         errorDiv.style.display = 'block';
     }
 
-    function hideError() {
-        document.getElementById('error').style.display = 'none';
+    function hideDateError() {
+        document.getElementById('dateError').style.display = 'none';
+    }
+
+    function showEmployeeError(message) {
+        const errorDiv = document.getElementById('employeeError');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        document.getElementById('employeeCount').textContent = 'Error';
     }
 
     function hideResults() {
