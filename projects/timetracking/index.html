@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracking System - Taras Antoniuk</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+            color: white;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .dashboard-card h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .dashboard-card .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-card .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .api-links {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .api-links h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .api-links a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .api-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header data-title="Time Tracking System" data-page="projects"></header>
+
+<div class="container">
+    <section>
+        <h2>🕐 Time Tracking System</h2>
+        <p style="font-size: 1.2em; color: #555; margin-bottom: 30px;">
+            Enterprise-grade employee time tracking system built with modern Java technologies. 
+            This system provides real-time presence monitoring for security teams and automated 
+            timesheet calculation for HR departments.
+        </p>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li><strong>Real-Time Presence Monitoring:</strong> Track which employees are currently in the building at any given time</li>
+            <li><strong>Check-In/Check-Out Logging:</strong> Record all employee entries and exits with precise timestamps</li>
+            <li><strong>Automated Timesheet Calculation:</strong> Generate detailed timesheets with daily work hours breakdown</li>
+            <li><strong>RESTful API:</strong> Full-featured API with comprehensive OpenAPI documentation</li>
+            <li><strong>Production-Ready:</strong> Deployed with SSL, proper error handling, and audit logging</li>
+        </ul>
+
+        <h3 style="margin-top: 30px;">Technology Stack</h3>
+        <div class="tech-stack">
+            <span class="tech-badge">Java 21</span>
+            <span class="tech-badge">Spring Boot 3.x</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">JPA / Hibernate</span>
+            <span class="tech-badge">REST API</span>
+            <span class="tech-badge">OpenAPI 3.0</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">SSL/HTTPS</span>
+        </div>
+
+        <div class="api-links">
+            <h3>🔗 Project Resources</h3>
+            <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank">📚 API Documentation</a>
+            <a href="https://timetracking.tarasantoniuk.com/api-docs" target="_blank">📄 OpenAPI Spec</a>
+            <a href="https://github.com/TarasAntoniuk/timetracking" target="_blank">💻 GitHub Repository</a>
+        </div>
+    </section>
+
+    <section style="background: #f9f9f9; padding: 50px 30px;">
+        <h2 style="text-align: center; margin-bottom: 40px;">Choose Your Dashboard</h2>
+        
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="icon">🔒</div>
+                <h3>Security Dashboard</h3>
+                <p>
+                    Real-time monitoring for security personnel. See instantly who is currently 
+                    present in the building at any specific moment.
+                </p>
+                <a href="security.html" class="btn">Open Security Dashboard →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">📊</div>
+                <h3>Timesheet Calculator</h3>
+                <p>
+                    HR and payroll tool for calculating employee work hours. Generate detailed 
+                    timesheets with daily breakdowns and total hours worked.
+                </p>
+                <a href="timesheet.html" class="btn">Open Timesheet Calculator →</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer></footer>
+
+<script src="../../js/menu.js"></script>
+</body>
+</html>

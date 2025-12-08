@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timesheet Calculator - Time Tracking System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .controls {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .date-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .employee-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .employee-header h3 {
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+
+        .employee-header p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e9f0 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+        }
+
+        .summary-box h4 {
+            color: #667eea;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .summary-item .label {
+            color: #555;
+            font-weight: 600;
+        }
+
+        .summary-item .value {
+            color: #333;
+            font-weight: 700;
+        }
+
+        .timesheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .timesheet-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .timesheet-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .timesheet-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        .timesheet-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .timesheet-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .timesheet-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .date-cell {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .hours-cell {
+            font-weight: 700;
+            color: #764ba2;
+        }
+
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c33;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .date-range {
+                grid-template-columns: 1fr;
+            }
+
+            .timesheet-table {
+                font-size: 0.9em;
+            }
+
+            .timesheet-table th,
+            .timesheet-table td {
+                padding: 10px 8px;
+            }
+
+            .employee-header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header data-title="Timesheet Calculator" data-page="projects"></header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Time Tracking</a>
+
+    <section class="controls">
+        <h2>📊 Employee Timesheet Calculator</h2>
+        <p style="color: #555; margin-bottom: 25px;">
+            Calculate worked hours for any employee within a specified time period.
+        </p>
+
+        <div class="form-group">
+            <label for="employeeSelect">Select Employee:</label>
+            <select id="employeeSelect" required>
+                <option value="">-- Loading employees --</option>
+            </select>
+        </div>
+
+        <div class="date-range">
+            <div class="form-group">
+                <label for="fromDate">From Date:</label>
+                <input type="date" id="fromDate" required>
+            </div>
+            <div class="form-group">
+                <label for="toDate">To Date:</label>
+                <input type="date" id="toDate" required>
+            </div>
+        </div>
+
+        <button class="btn-primary" onclick="generateTimesheet()">Generate Timesheet</button>
+
+        <div id="error" style="display: none;" class="error"></div>
+    </section>
+
+    <section class="results" id="results" style="display: none;">
+        <div id="loading" class="loading" style="display: none;">
+            Calculating timesheet
+        </div>
+
+        <div id="timesheetData"></div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="icon">📋</div>
+            <p>No time entries found for the selected period</p>
+        </div>
+    </section>
+</div>
+
+<footer></footer>
+
+<script src="../../js/menu.js"></script>
+<script>
+    const API_BASE = 'https://timetracking.tarasantoniuk.com/api';
+
+    // Load employees on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        loadEmployees();
+        setDefaultDates();
+    });
+
+    function setDefaultDates() {
+        const today = new Date();
+        const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        
+        document.getElementById('fromDate').value = formatDate(firstDayOfMonth);
+        document.getElementById('toDate').value = formatDate(today);
+    }
+
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    async function loadEmployees() {
+        const select = document.getElementById('employeeSelect');
+        
+        try {
+            const response = await fetch(`${API_BASE}/employees`);
+            
+            if (!response.ok) {
+                throw new Error('Failed to load employees');
+            }
+
+            const employees = await response.json();
+            
+            select.innerHTML = '<option value="">-- Select an employee --</option>';
+            
+            employees.forEach(emp => {
+                const option = document.createElement('option');
+                option.value = emp.id;
+                option.textContent = `${emp.firstName} ${emp.lastName} (ID: ${emp.id})`;
+                select.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error loading employees:', error);
+            select.innerHTML = '<option value="">-- Error loading employees --</option>';
+            showError('Failed to load employee list. Please refresh the page.');
+        }
+    }
+
+    async function generateTimesheet() {
+        const employeeId = document.getElementById('employeeSelect').value;
+        const fromDate = document.getElementById('fromDate').value;
+        const toDate = document.getElementById('toDate').value;
+
+        if (!employeeId) {
+            showError('Please select an employee');
+            return;
+        }
+
+        if (!fromDate || !toDate) {
+            showError('Please select both from and to dates');
+            return;
+        }
+
+        if (new Date(fromDate) > new Date(toDate)) {
+            showError('From date must be before to date');
+            return;
+        }
+
+        hideError();
+        showLoading();
+
+        try {
+            const fromDateTime = `${fromDate}T00:00:00`;
+            const toDateTime = `${toDate}T23:59:59`;
+            
+            const url = `${API_BASE}/time-logs/timesheet?employee_id=${employeeId}&from=${encodeURIComponent(fromDateTime)}&to=${encodeURIComponent(toDateTime)}`;
+            
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            displayTimesheet(data);
+        } catch (error) {
+            console.error('Error:', error);
+            showError('Failed to generate timesheet. Please check your inputs and try again.');
+            hideResults();
+        } finally {
+            hideLoading();
+        }
+    }
+
+    function displayTimesheet(data) {
+        const resultsSection = document.getElementById('results');
+        const timesheetData = document.getElementById('timesheetData');
+        const emptyState = document.getElementById('emptyState');
+
+        resultsSection.style.display = 'block';
+
+        if (!data.dailyRecords || data.dailyRecords.length === 0) {
+            emptyState.style.display = 'block';
+            timesheetData.innerHTML = '';
+            return;
+        }
+
+        emptyState.style.display = 'none';
+
+        // Employee header
+        const employeeHeader = `
+            <div class="employee-header">
+                <h3>${data.firstName} ${data.lastName}</h3>
+                <p><strong>Employee ID:</strong> ${data.employeeId}</p>
+                <p><strong>Period:</strong> ${formatDisplayDate(data.from)} to ${formatDisplayDate(data.to)}</p>
+            </div>
+        `;
+
+        // Summary box
+        const summary = `
+            <div class="summary-box">
+                <h4>Summary</h4>
+                <div class="summary-item">
+                    <span class="label">Total Hours Worked:</span>
+                    <span class="value">${data.totalHours}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Total Days:</span>
+                    <span class="value">${data.dailyRecords.length}</span>
+                </div>
+            </div>
+        `;
+
+        // Daily records table
+        let tableRows = '';
+        data.dailyRecords.forEach(record => {
+            tableRows += `
+                <tr>
+                    <td class="date-cell">${formatDisplayDate(record.date)}</td>
+                    <td>${formatTime(record.firstEntry)}</td>
+                    <td>${formatTime(record.lastExit)}</td>
+                    <td class="hours-cell">${record.hoursWorked}</td>
+                    <td>${record.totalEntries}</td>
+                </tr>
+            `;
+        });
+
+        const table = `
+            <table class="timesheet-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>First Entry</th>
+                        <th>Last Exit</th>
+                        <th>Hours Worked</th>
+                        <th>Entries</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+        `;
+
+        timesheetData.innerHTML = employeeHeader + summary + table;
+    }
+
+    function formatDisplayDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+    }
+
+    function formatTime(time) {
+        if (!time) return '--';
+        if (typeof time === 'string') return time;
+        
+        // Handle LocalTime object
+        const hour = String(time.hour || 0).padStart(2, '0');
+        const minute = String(time.minute || 0).padStart(2, '0');
+        const second = String(time.second || 0).padStart(2, '0');
+        return `${hour}:${minute}:${second}`;
+    }
+
+    function showLoading() {
+        document.getElementById('loading').style.display = 'block';
+    }
+
+    function hideLoading() {
+        document.getElementById('loading').style.display = 'none';
+    }
+
+    function showError(message) {
+        const errorDiv = document.getElementById('error');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+
+    function hideError() {
+        document.getElementById('error').style.display = 'none';
+    }
+
+    function hideResults() {
+        document.getElementById('results').style.display = 'none';
+    }
+</script>
+</body>
+</html>
