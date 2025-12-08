@@ -33,18 +33,32 @@
         </div>
 
         <div class="project-card">
-            <h3>💰 Finance API</h3>
-            <p>Production-ready Finance management system with comprehensive currency operations, banking modules, and ECB exchange rate synchronization.</p>
-            <p><strong>Technologies:</strong> Java 21, Spring Boot 3.5.5, PostgreSQL, Docker</p>
-            <p><strong>Features:</strong></p>
+            <h3>💰 Financial Accounting System</h3>
+            <p>Enterprise-grade financial accounting system with Event Sourcing for banking operations and automatic ECB currency integration. Modular monolith architecture with comprehensive test coverage.</p>
+            <p><strong>Technologies:</strong> Java 21, Spring Boot 3.5.5, PostgreSQL 17, Event Sourcing, Testcontainers</p>
+            <p><strong>Core Module:</strong></p>
             <ul>
-                <li>Multi-currency support with automatic ECB rate updates</li>
-                <li>Organization and banking modules</li>
-                <li>Comprehensive audit logging</li>
-                <li>99% test coverage with Testcontainers</li>
+                <li>Automatic ECB Integration - Daily sync at 16:05 CET</li>
+                <li>190k+ Exchange Rates - Historical data since EUR introduction</li>
+                <li>40+ Currencies - ISO 4217 compliant</li>
+                <li>Public API - Real-time currency data</li>
+            </ul>
+            <p><strong>Banking Module:</strong></p>
+            <ul>
+                <li>Event Sourcing - Immutable transaction audit trail</li>
+                <li>Bank Receipts & Payments - 10+ transaction types each</li>
+                <li>Document Lifecycle - DRAFT → POST → UNPOST</li>
+                <li>Financial Reports - Balance & Turnover with filters</li>
+            </ul>
+            <p><strong>Quality:</strong></p>
+            <ul>
+                <li>193 tests with 97% line & 95% branch coverage</li>
+                <li>N+1 Prevention with @EntityGraph</li>
+                <li>CI/CD with GitHub Actions</li>
             </ul>
             <p>
-                <a href="https://api.tarasantoniuk.com" target="_blank">🌐 Live API →</a> |
+                <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank">🌐 Live API & Swagger →</a> |
+                <a href="https://tarasantoniuk.com/exchange-rates.html" target="_blank">💱 Exchange Rates Demo →</a> |
                 <a href="https://github.com/TarasAntoniuk/finance" target="_blank">💻 GitHub →</a>
             </p>
         </div>
