@@ -124,35 +124,50 @@
         }
 
         .employee-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
         }
 
-        .employee-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e3e9f0 100%);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+        .employee-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
             transition: all 0.3s ease;
         }
 
-        .employee-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        .employee-item:last-child {
+            border-bottom: none;
         }
 
-        .employee-id {
-            font-size: 0.9em;
-            color: #764ba2;
-            font-weight: 600;
-            margin-bottom: 5px;
+        .employee-item:hover {
+            background: #f5f7fa;
         }
 
-        .employee-name {
-            font-size: 1.2em;
-            color: #333;
+        .employee-number {
             font-weight: 700;
+            font-size: 1.2em;
+            color: #667eea;
+            margin-right: 15px;
+            min-width: 40px;
+        }
+
+        .employee-info {
+            flex: 1;
+        }
+
+        .employee-full-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .employee-id-small {
+            font-size: 0.85em;
+            color: #999;
+            margin-left: 10px;
         }
 
         .empty-state {
@@ -221,8 +236,13 @@
                 margin-top: 10px;
             }
 
-            .employee-list {
-                grid-template-columns: 1fr;
+            .employee-item {
+                padding: 12px 15px;
+            }
+
+            .employee-number {
+                font-size: 1em;
+                min-width: 35px;
             }
         }
     </style>
@@ -237,21 +257,20 @@
     <section class="controls">
         <h2>🔒 Who is in the Building?</h2>
         <p style="color: #555; margin-bottom: 25px;">
-            Check which employees are currently present in the building at any specific time.
+            Select date and time to see which employees are present in the building. The list updates automatically when you change the date or time. By default, November 15, 2024 at 2:30 PM is selected as test data is available for this period.
         </p>
 
         <div class="datetime-input">
             <div class="input-group">
                 <label for="checkDate">Date:</label>
-                <input type="date" id="checkDate" required>
+                <input type="date" id="checkDate" required onchange="checkPresence()">
             </div>
             <div class="input-group">
                 <label for="checkTime">Time:</label>
-                <input type="time" id="checkTime" step="1" required>
+                <input type="time" id="checkTime" step="1" required onchange="checkPresence()">
             </div>
             <div>
-                <button class="btn-primary" onclick="checkPresence()">Check Presence</button>
-                <button class="btn-now" onclick="setNow()">Now</button>
+                <button class="btn-now" onclick="setNow()">Set to Now</button>
             </div>
         </div>
 
@@ -283,31 +302,28 @@
 <script>
     const API_BASE = 'https://timetracking.tarasantoniuk.com/api';
 
-    // Set current date/time on page load
+    // Set current date/time on page load and check presence
     window.addEventListener('DOMContentLoaded', () => {
         setNow();
+        // Auto-check presence after setting default date
+        setTimeout(() => {
+            checkPresence();
+        }, 100);
     });
 
     function setNow() {
-        const now = new Date();
-        
-        // Format date as YYYY-MM-DD
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        document.getElementById('checkDate').value = `${year}-${month}-${day}`;
-        
-        // Format time as HH:MM:SS
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('checkTime').value = `${hours}:${minutes}:${seconds}`;
+        // Set default to November 15, 2024 at 14:30:00 (test data period)
+        document.getElementById('checkDate').value = '2024-11-15';
+        document.getElementById('checkTime').value = '14:30:00';
+
+        // Auto-check presence after setting time
+        checkPresence();
     }
 
     async function checkPresence() {
         const dateInput = document.getElementById('checkDate').value;
         const timeInput = document.getElementById('checkTime').value;
-        
+
         if (!dateInput || !timeInput) {
             showError('Please enter both date and time');
             return;
@@ -319,9 +335,9 @@
         try {
             // Combine date and time in ISO format
             const datetime = `${dateInput}T${timeInput}`;
-            
+
             const response = await fetch(`${API_BASE}/time-logs/present?time=${encodeURIComponent(datetime)}`);
-            
+
             if (!response.ok) {
                 throw new Error(`API error: ${response.status}`);
             }
@@ -337,16 +353,23 @@
         }
     }
 
-    async function displayResults(employeeIds) {
+    async function displayResults(data) {
         const resultsSection = document.getElementById('results');
         const employeeList = document.getElementById('employeeList');
         const emptyState = document.getElementById('emptyState');
         const employeeCount = document.getElementById('employeeCount');
 
+        console.log('API Response:', data);
+
         resultsSection.style.display = 'block';
         employeeList.innerHTML = '';
 
-        if (!employeeIds || employeeIds.length === 0) {
+        // Extract employees array from response
+        const employees = data.employees || [];
+
+        console.log('Employees:', employees);
+
+        if (!employees || employees.length === 0) {
             emptyState.style.display = 'block';
             employeeList.style.display = 'none';
             employeeCount.textContent = '0 employees';
@@ -354,38 +377,27 @@
         }
 
         emptyState.style.display = 'none';
-        employeeList.style.display = 'grid';
-        employeeCount.textContent = `${employeeIds.length} ${employeeIds.length === 1 ? 'employee' : 'employees'}`;
+        employeeList.style.display = 'block';
+        employeeCount.textContent = `${employees.length} ${employees.length === 1 ? 'employee' : 'employees'}`;
 
-        // Fetch employee details
-        for (const id of employeeIds) {
-            try {
-                const response = await fetch(`${API_BASE}/employees/${id}`);
-                if (response.ok) {
-                    const employee = await response.json();
-                    const card = createEmployeeCard(employee);
-                    employeeList.appendChild(card);
-                } else {
-                    // If employee details not found, show just ID
-                    const card = createEmployeeCard({ id: id, firstName: 'Employee', lastName: `#${id}` });
-                    employeeList.appendChild(card);
-                }
-            } catch (error) {
-                console.error(`Error fetching employee ${id}:`, error);
-                const card = createEmployeeCard({ id: id, firstName: 'Employee', lastName: `#${id}` });
-                employeeList.appendChild(card);
-            }
-        }
+        // Display employees directly - no additional API calls needed!
+        employees.forEach((employee, index) => {
+            const item = createEmployeeItem(employee, index + 1);
+            employeeList.appendChild(item);
+        });
     }
 
-    function createEmployeeCard(employee) {
-        const card = document.createElement('div');
-        card.className = 'employee-card';
-        card.innerHTML = `
-            <div class="employee-id">ID: ${employee.id}</div>
-            <div class="employee-name">${employee.firstName} ${employee.lastName}</div>
+    function createEmployeeItem(employee, number) {
+        const item = document.createElement('div');
+        item.className = 'employee-item';
+        item.innerHTML = `
+            <div class="employee-number">${number}.</div>
+            <div class="employee-info">
+                <span class="employee-full-name">${employee.firstName} ${employee.lastName}</span>
+                <span class="employee-id-small">(ID: ${employee.id})</span>
+            </div>
         `;
-        return card;
+        return item;
     }
 
     function showLoading() {
