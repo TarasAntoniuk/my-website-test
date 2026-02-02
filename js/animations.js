@@ -29,7 +29,7 @@ const typingText = document.querySelector('.typing-text');
 if (typingText) {
     const titles = [
         'Backend Developer',
-        'Java Expert',
+        'Java Developer',
         'Spring Boot Specialist',
         'API Architect',
         'Database Optimizer'
