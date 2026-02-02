@@ -5,19 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Taras Antoniuk</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
+<!-- Animated background -->
+<div class="animated-bg"></div>
+
+<!-- Dark mode toggle -->
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+</button>
 
 <header data-title="My Projects" data-page="projects"></header>
 
 <div class="container">
     <section>
-        <h2>Current Projects</h2>
+        <h2><i class="fas fa-project-diagram"></i> Current Projects</h2>
 
-        <div class="project-card">
-            <h3>⏰ Time Tracking System</h3>
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-clock"></i> Time Tracking System</h3>
             <p>Enterprise-grade employee time tracking system with check-in/check-out logging, real-time presence monitoring, and automated timesheet calculation.</p>
-            <p><strong>Technologies:</strong> Java 21, Spring Boot 3.x, PostgreSQL, REST API</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot 3.x</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">REST API</span>
+            </div>
             <p><strong>Features:</strong></p>
             <ul>
                 <li>Real-time employee presence tracking</li>
@@ -26,16 +40,22 @@
                 <li>RESTful API with OpenAPI documentation</li>
             </ul>
             <p>
-                <a href="projects/timetracking/index.html">🚀 View Live Demo →</a> |
-                <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank">📚 API Documentation →</a> |
-                <a href="https://github.com/TarasAntoniuk/time-tracking" target="_blank">💻 GitHub →</a>
+                <a href="projects/timetracking/index.html"><i class="fas fa-rocket"></i> View Live Demo</a> |
+                <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank"><i class="fas fa-book"></i> API Documentation</a> |
+                <a href="https://github.com/TarasAntoniuk/time-tracking" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 
-        <div class="project-card">
-            <h3>💰 Financial Accounting System</h3>
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-coins"></i> Financial Accounting System</h3>
             <p>Enterprise-grade financial accounting system with Event Sourcing for banking operations and automatic ECB currency integration. Modular monolith architecture with comprehensive test coverage.</p>
-            <p><strong>Technologies:</strong> Java 21, Spring Boot 3.5.5, PostgreSQL 17, Event Sourcing, Testcontainers</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot 3.5.5</span>
+                <span class="tech-tag">PostgreSQL 17</span>
+                <span class="tech-tag">Event Sourcing</span>
+                <span class="tech-tag">Testcontainers</span>
+            </div>
             <p><strong>Core Module:</strong></p>
             <ul>
                 <li>Automatic ECB Integration - Daily sync at 16:05 CET</li>
@@ -57,23 +77,27 @@
                 <li>CI/CD with GitHub Actions</li>
             </ul>
             <p>
-                <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank">🌐 Live API & Swagger →</a> |
-                <a href="https://tarasantoniuk.com/exchange-rates.html" target="_blank">💱 Exchange Rates Demo →</a> |
-                <a href="https://github.com/TarasAntoniuk/finance" target="_blank">💻 GitHub →</a>
+                <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank"><i class="fas fa-globe"></i> Live API & Swagger</a> |
+                <a href="https://tarasantoniuk.com/exchange-rates.html" target="_blank"><i class="fas fa-exchange-alt"></i> Exchange Rates Demo</a> |
+                <a href="https://github.com/TarasAntoniuk/finance" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 
-        <div class="project-card">
-            <h3>🔧 Entity Generator</h3>
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-cogs"></i> Entity Generator</h3>
             <p>JPA entity generator for PostgreSQL databases. Automates creation of Java entities from existing database schemas.</p>
-            <p><strong>Technologies:</strong> Java, JPA, PostgreSQL JDBC</p>
-            <p><a href="https://github.com/TarasAntoniuk/entity-generator" target="_blank">View on GitHub →</a></p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">JPA</span>
+                <span class="tech-tag">PostgreSQL JDBC</span>
+            </div>
+            <p><a href="https://github.com/TarasAntoniuk/entity-generator" target="_blank"><i class="fab fa-github"></i> View on GitHub</a></p>
         </div>
 
-        <div class="project-card">
-            <h3>All Projects</h3>
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fab fa-github"></i> All Projects</h3>
             <p>Explore all my projects and contributions on my GitHub profile:</p>
-            <p><a href="https://github.com/TarasAntoniuk" target="_blank">https://github.com/TarasAntoniuk →</a></p>
+            <p><a href="https://github.com/TarasAntoniuk" target="_blank"><i class="fas fa-external-link-alt"></i> https://github.com/TarasAntoniuk</a></p>
         </div>
     </section>
 </div>
@@ -81,5 +105,6 @@
 <footer></footer>
 
 <script src="js/menu.js"></script>
+<script src="js/animations.js"></script>
 </body>
 </html>

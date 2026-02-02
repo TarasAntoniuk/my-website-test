@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exchange Rates - Taras Antoniuk</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .currency-header {
-            background: white;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: var(--card-shadow);
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
@@ -28,14 +29,14 @@
         .base-currency-label {
             font-size: 1.2em;
             font-weight: 600;
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         .base-currency-value {
             font-size: 1.5em;
             font-weight: 700;
-            color: #764ba2;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--secondary-color);
+            background: var(--bg-color);
             padding: 10px 25px;
             border-radius: 25px;
         }
@@ -49,30 +50,31 @@
         .date-selector label {
             font-size: 1.1em;
             font-weight: 600;
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         .date-selector input[type="date"] {
             padding: 10px 20px;
-            border: 2px solid #667eea;
+            border: 2px solid var(--primary-color);
             border-radius: 25px;
             font-size: 1em;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: all 0.3s ease;
-            background: white;
+            background: var(--card-bg);
+            color: var(--text-color);
         }
 
         .date-selector input[type="date"]:focus {
             outline: none;
-            border-color: #764ba2;
+            border-color: var(--secondary-color);
             box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
         }
 
         .rates-table-container {
-            background: white;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: var(--card-shadow);
             overflow-x: auto;
         }
 
@@ -83,7 +85,7 @@
         }
 
         .rates-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
         }
 
@@ -95,27 +97,27 @@
         }
 
         .rates-table tbody tr {
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
             transition: background 0.3s ease;
         }
 
         .rates-table tbody tr:hover {
-            background: #f5f7fa;
+            background: var(--bg-color);
         }
 
         .rates-table td {
             padding: 15px;
-            color: #555;
+            color: var(--text-secondary);
         }
 
         .currency-code {
             font-weight: 600;
-            color: #667eea;
+            color: var(--primary-color);
             font-size: 1.1em;
         }
 
         .currency-name {
-            color: #764ba2;
+            color: var(--secondary-color);
             font-size: 0.9em;
         }
 
@@ -127,7 +129,7 @@
 
         .rate-value {
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
             font-size: 1.1em;
         }
 
@@ -135,7 +137,7 @@
             text-align: center;
             padding: 40px;
             font-size: 1.2em;
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         .error {
@@ -145,6 +147,12 @@
             border-radius: 10px;
             color: #c33;
             margin: 20px 0;
+        }
+
+        body.dark-mode .error {
+            background: #3d1f1f;
+            border-color: #5c2f2f;
+            color: #ff9999;
         }
 
         @media (max-width: 768px) {
@@ -166,30 +174,38 @@
 </head>
 <body>
 
+<!-- Animated background -->
+<div class="animated-bg"></div>
+
+<!-- Dark mode toggle -->
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+</button>
+
 <header data-title="Exchange Rates" data-page="exchange-rates"></header>
 
 <div class="container">
-    <div class="currency-header">
+    <div class="currency-header animate-on-scroll">
         <div class="base-currency">
-            <span class="base-currency-label">Base Currency:</span>
+            <span class="base-currency-label"><i class="fas fa-euro-sign"></i> Base Currency:</span>
             <span class="base-currency-value">EUR (Euro)</span>
         </div>
         <div class="date-selector">
-            <label for="rateDate">Date:</label>
+            <label for="rateDate"><i class="fas fa-calendar-alt"></i> Date:</label>
             <input type="date" id="rateDate" max="">
         </div>
     </div>
 
-    <div class="rates-table-container">
-        <div id="loadingMessage" class="loading">Loading currency rates...</div>
+    <div class="rates-table-container animate-on-scroll">
+        <div id="loadingMessage" class="loading"><i class="fas fa-spinner fa-spin"></i> Loading currency rates...</div>
         <div id="errorMessage" class="error" style="display: none;"></div>
         <table class="rates-table" id="ratesTable" style="display: none;">
             <thead>
             <tr>
-                <th>Currency</th>
-                <th>Currency Code</th>
-                <th>Last Updated</th>
-                <th>Exchange Rate</th>
+                <th><i class="fas fa-flag"></i> Currency</th>
+                <th><i class="fas fa-code"></i> Currency Code</th>
+                <th><i class="fas fa-clock"></i> Last Updated</th>
+                <th><i class="fas fa-chart-line"></i> Exchange Rate</th>
             </tr>
             </thead>
             <tbody id="ratesBody">
@@ -202,6 +218,7 @@
 
 <script src="js/menu.js"></script>
 <script src="js/exchange-rates.js"></script>
+<script src="js/animations.js"></script>
 
 </body>
 </html>

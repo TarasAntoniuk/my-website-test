@@ -5,32 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taras Antoniuk - Backend Developer</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
+<!-- Animated background -->
+<div class="animated-bg"></div>
+
+<!-- Dark mode toggle -->
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+</button>
+
 <header data-title="TARAS ANTONIUK" data-page="index"></header>
 
-<section class="profile-section">
+<section class="profile-section animate-on-scroll">
     <div class="profile-photo">
         <img src="images/profile.jpg" alt="Taras Antoniuk">
     </div>
     <div class="profile-info">
-        <h2>Backend Developer</h2>
+        <h2 class="typing-container">
+            <span class="typing-text"></span>
+            <span class="typing-cursor">|</span>
+        </h2>
         <p>19+ years of expertise in ERP systems, API development, and database optimization</p>
         <div class="contact-info">
-            <span>📱 WhatsApp: +1 437 552-8217</span>
-            <span>✉️ Email: <a href="mailto:bronya2004@gmail.com">bronya2004@gmail.com</a></span>
+            <span><i class="fab fa-whatsapp"></i> +34 617 04 97 84</span>
+            <span><i class="fas fa-envelope"></i> <a href="mailto:tarasantoniukr@gmail.com">tarasantoniukr@gmail.com</a></span>
         </div>
         <div class="profile-links">
-            <a href="https://github.com/TarasAntoniuk/" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank">LinkedIn</a>
-            <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank">HackerRank</a>
+            <a href="https://github.com/TarasAntoniuk/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank"><i class="fab fa-hackerrank"></i> HackerRank</a>
         </div>
     </div>
 </section>
 
-<section id="about">
-    <h2>About Me</h2>
+<section id="about" class="animate-on-scroll">
+    <h2><i class="fas fa-user"></i> About Me</h2>
     <p>I am Taras Antoniuk, an experienced Backend Developer with over 19 years of expertise in ERP systems, complex data integration, and relational databases. I specialize in designing and delivering scalable, high-performance RESTFul APIs, with a recent focus (2024) on Java and Spring Boot.</p>
 
     <p>Throughout my career, I have optimized SQL queries, streamlined enterprise workflows, and built robust backend services that drive tangible business impact. I have extensive experience in microservices architecture, database design, and API development, ensuring solutions are maintainable, efficient, and secure.</p>
@@ -46,8 +58,8 @@
     </ul>
 </section>
 
-<section id="qualifications">
-    <h2>Summary of Qualifications</h2>
+<section id="qualifications" class="animate-on-scroll">
+    <h2><i class="fas fa-award"></i> Summary of Qualifications</h2>
     <ul>
         <li>19 years of development experience, primarily in the fintech sector</li>
         <li>10+ years working with object-oriented languages</li>
@@ -60,32 +72,172 @@
     </ul>
 </section>
 
-<section id="experience">
-    <h2>Professional Employment Experience</h2>
+<section id="experience" class="animate-on-scroll">
+    <h2><i class="fas fa-briefcase"></i> Professional Employment Experience</h2>
     <p>For full details, please visit the <a href="experience.html">Experience page</a>.</p>
 </section>
 
-<section id="education">
-    <h2>Education & Training</h2>
+<section id="education" class="animate-on-scroll">
+    <h2><i class="fas fa-graduation-cap"></i> Education & Training</h2>
     <p><strong>Bachelor's Degree in Applied Mathematics</strong><br>
         National Technical University of Ukraine (2001 – 2013)</p>
 
-    <h2 style="margin-top: 30px;">Certifications</h2>
+    <h2 style="margin-top: 30px;"><i class="fas fa-certificate"></i> Certifications</h2>
     <p>View all my professional certifications on the <a href="certificates.html">Certificates page</a>.</p>
 </section>
 
-<section id="skills">
-    <h2>Technical Skills</h2>
-    <ul>
-        <li><strong>Languages:</strong> Java, SQL, PeopleCode, PL/SQL, 1C, SQR</li>
-        <li><strong>Frameworks:</strong> Spring Boot, Jakarta, JPA, JDBC, Hibernate</li>
-        <li><strong>Databases:</strong> PostgreSQL, Oracle DB, MS SQL Server</li>
-        <li><strong>Tools:</strong> Maven, Git, Docker, Swagger/OpenAPI, Postman, Fiddler</li>
-    </ul>
+<section id="skills" class="animate-on-scroll">
+    <h2><i class="fas fa-code"></i> Technical Skills</h2>
+
+    <!-- Skills Chart -->
+    <div class="skills-chart">
+        <div class="skill-bar">
+            <div class="skill-info">
+                <span>Java / Spring Boot</span>
+                <span>95%</span>
+            </div>
+            <div class="skill-progress">
+                <div class="skill-fill" data-width="95"></div>
+            </div>
+        </div>
+        <div class="skill-bar">
+            <div class="skill-info">
+                <span>SQL / Databases</span>
+                <span>98%</span>
+            </div>
+            <div class="skill-progress">
+                <div class="skill-fill" data-width="98"></div>
+            </div>
+        </div>
+        <div class="skill-bar">
+            <div class="skill-info">
+                <span>REST APIs</span>
+                <span>95%</span>
+            </div>
+            <div class="skill-progress">
+                <div class="skill-fill" data-width="95"></div>
+            </div>
+        </div>
+        <div class="skill-bar">
+            <div class="skill-info">
+                <span>Docker / DevOps</span>
+                <span>85%</span>
+            </div>
+            <div class="skill-progress">
+                <div class="skill-fill" data-width="85"></div>
+            </div>
+        </div>
+        <div class="skill-bar">
+            <div class="skill-info">
+                <span>Testing (JUnit, Testcontainers)</span>
+                <span>90%</span>
+            </div>
+            <div class="skill-progress">
+                <div class="skill-fill" data-width="90"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Grid with Icons -->
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h3><i class="fas fa-laptop-code"></i> Languages</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+                <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+                <span class="skill-tag">PeopleCode</span>
+                <span class="skill-tag">PL/SQL</span>
+                <span class="skill-tag">1C</span>
+                <span class="skill-tag">SQR</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fas fa-leaf"></i> Spring Boot</span>
+                <span class="skill-tag">Jakarta</span>
+                <span class="skill-tag">JPA</span>
+                <span class="skill-tag">JDBC</span>
+                <span class="skill-tag">Hibernate</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3><i class="fas fa-database"></i> Databases</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fas fa-elephant"></i> PostgreSQL</span>
+                <span class="skill-tag">Oracle DB</span>
+                <span class="skill-tag">MS SQL Server</span>
+                <span class="skill-tag"><i class="fas fa-bolt"></i> Redis</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3><i class="fas fa-vial"></i> Testing</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">JUnit 5</span>
+                <span class="skill-tag"><i class="fab fa-docker"></i> Testcontainers</span>
+                <span class="skill-tag">JaCoCo</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3><i class="fas fa-rocket"></i> DevOps & CI/CD</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+                <span class="skill-tag">Docker Compose</span>
+                <span class="skill-tag"><i class="fab fa-github"></i> GitHub Actions</span>
+                <span class="skill-tag">nginx</span>
+                <span class="skill-tag">Liquibase</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Tools</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Maven</span>
+                <span class="skill-tag">Gradle</span>
+                <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="skill-tag">Swagger/OpenAPI</span>
+                <span class="skill-tag">Postman</span>
+                <span class="skill-tag">Fiddler</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="publications" class="animate-on-scroll">
+    <h2><i class="fas fa-newspaper"></i> Publications & Articles</h2>
+    <div class="publications-grid">
+        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-join-fetch-reduced-database-load-by-94-a-real-world-case-study-40c" target="_blank" class="publication-card">
+            <div class="publication-header">
+                <i class="fab fa-dev"></i>
+                <span class="publication-platform">DEV.to</span>
+            </div>
+            <h3>How JOIN FETCH Reduced Database Load by 94%: A Real-World Case Study</h3>
+            <p>Real-world performance optimization case study demonstrating N+1 query problem resolution and database efficiency improvements.</p>
+            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-pagination-saved-an-api-from-crashing-a-practical-case-study-4jfb" target="_blank" class="publication-card">
+            <div class="publication-header">
+                <i class="fab fa-dev"></i>
+                <span class="publication-platform">DEV.to</span>
+            </div>
+            <h3>How Pagination Saved an API from Crashing: A Practical Case Study</h3>
+            <p>Real-world performance optimization case study demonstrating pagination impact on API stability.</p>
+            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/java-testing-guide-how-to-measure-and-improve-code-coverage-with-jacoco-3p75" target="_blank" class="publication-card">
+            <div class="publication-header">
+                <i class="fab fa-dev"></i>
+                <span class="publication-platform">DEV.to</span>
+            </div>
+            <h3>Java Testing Guide: How to Measure and Improve Code Coverage with JaCoCo</h3>
+            <p>Comprehensive guide to JaCoCo integration, test coverage measurement, and improvement strategies.</p>
+            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+        </a>
+    </div>
 </section>
 
 <footer></footer>
 
 <script src="js/menu.js"></script>
+<script src="js/animations.js"></script>
 </body>
 </html>
