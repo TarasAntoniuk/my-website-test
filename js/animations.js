@@ -82,8 +82,9 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-// Also observe stats bar for counter animation
-document.querySelectorAll('.stats-bar').forEach(el => observer.observe(el));
+// Observe stats bar for counter animation
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) observer.observe(statsBar);
 
 // Skills Chart Animation
 function animateSkillBars() {

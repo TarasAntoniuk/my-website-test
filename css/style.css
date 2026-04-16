@@ -636,21 +636,15 @@ a:hover {
 
 /* Stats bar */
 .stats-bar {
-    max-width: 100%;
-    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: var(--container-max);
+    margin: 0 auto;
     padding: 0;
-    background: transparent;
+    background: none;
     border: none;
     border-radius: 0;
     box-shadow: none;
-}
-
-.stats-inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
 }
 
 .stat-item {
@@ -1451,7 +1445,7 @@ footer {
     }
 
     /* Stats responsive */
-    .stats-inner {
+    .stats-bar {
         grid-template-columns: repeat(2, 1fr);
     }
 
