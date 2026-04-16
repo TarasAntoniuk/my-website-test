@@ -2,7 +2,6 @@
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
-// Check for saved dark mode preference
 if (localStorage.getItem('darkMode') === 'enabled') {
     body.classList.add('dark-mode');
     if (darkModeToggle) {
@@ -13,7 +12,6 @@ if (localStorage.getItem('darkMode') === 'enabled') {
 if (darkModeToggle) {
     darkModeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
-
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('darkMode', 'enabled');
             darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
@@ -28,11 +26,11 @@ if (darkModeToggle) {
 const typingText = document.querySelector('.typing-text');
 if (typingText) {
     const titles = [
-        'Backend Developer',
-        'Java Developer',
+        'Senior Java Developer',
         'Spring Boot Specialist',
         'API Architect',
-        'Database Optimizer'
+        'Database Optimizer',
+        'Backend Engineer'
     ];
     let titleIndex = 0;
     let charIndex = 0;
@@ -41,7 +39,6 @@ if (typingText) {
 
     function type() {
         const currentTitle = titles[titleIndex];
-
         if (isDeleting) {
             typingText.textContent = currentTitle.substring(0, charIndex - 1);
             charIndex--;
@@ -51,52 +48,46 @@ if (typingText) {
             charIndex++;
             typingSpeed = 100;
         }
-
         if (!isDeleting && charIndex === currentTitle.length) {
             isDeleting = true;
-            typingSpeed = 2000; // Pause at end
+            typingSpeed = 2500;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             titleIndex = (titleIndex + 1) % titles.length;
-            typingSpeed = 500; // Pause before next word
+            typingSpeed = 500;
         }
-
         setTimeout(type, typingSpeed);
     }
-
-    // Start typing animation
-    setTimeout(type, 1000);
+    setTimeout(type, 800);
 }
 
-// Scroll Animations
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
+// Scroll Animations with IntersectionObserver
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
 
-            // Animate skill bars when skills section becomes visible
-            if (entry.target.id === 'skills' || entry.target.querySelector('.skills-chart')) {
+            // Animate skill bars
+            if (entry.target.querySelector('.skills-chart')) {
                 animateSkillBars();
+            }
+
+            // Animate stat counters
+            if (entry.target.classList.contains('stats-bar')) {
+                animateCounters();
             }
         }
     });
-}, observerOptions);
+}, { root: null, rootMargin: '0px', threshold: 0.1 });
 
-// Observe all elements with animate-on-scroll class
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-});
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Also observe stats bar for counter animation
+document.querySelectorAll('.stats-bar').forEach(el => observer.observe(el));
 
 // Skills Chart Animation
 function animateSkillBars() {
-    const skillFills = document.querySelectorAll('.skill-fill');
-    skillFills.forEach(fill => {
+    document.querySelectorAll('.skill-fill').forEach(fill => {
         const width = fill.getAttribute('data-width');
         setTimeout(() => {
             fill.style.width = width + '%';
@@ -104,47 +95,67 @@ function animateSkillBars() {
     });
 }
 
-// Add staggered animation delays to timeline items
-document.querySelectorAll('.timeline-item').forEach((item, index) => {
-    item.style.transitionDelay = (index * 0.1) + 's';
+// Counter Animation for stats
+let countersAnimated = false;
+function animateCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+
+    document.querySelectorAll('.stat-number').forEach(counter => {
+        const text = counter.textContent;
+        const match = text.match(/(\d+)/);
+        if (!match) return;
+
+        const target = parseInt(match[1]);
+        const suffix = text.replace(match[1], '');
+        const duration = 1500;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+            counter.textContent = current + suffix;
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                counter.textContent = text;
+            }
+        }
+        counter.textContent = '0' + suffix;
+        requestAnimationFrame(update);
+    });
+}
+
+// Staggered animation delays
+document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.style.transitionDelay = (i * 0.08) + 's';
 });
 
-// Add staggered animation delays to skill categories
-document.querySelectorAll('.skill-category').forEach((category, index) => {
-    category.style.transitionDelay = (index * 0.05) + 's';
+document.querySelectorAll('.skill-category').forEach((cat, i) => {
+    cat.style.transitionDelay = (i * 0.04) + 's';
 });
 
-// Add staggered animation delays to publication cards
-document.querySelectorAll('.publication-card').forEach((card, index) => {
-    card.style.transitionDelay = (index * 0.1) + 's';
+document.querySelectorAll('.publication-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.08) + 's';
+});
+
+document.querySelectorAll('.preview-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.06) + 's';
 });
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
-});
-
-// Parallax effect for animated background
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            const scrolled = window.pageYOffset;
-            const animatedBg = document.querySelector('.animated-bg');
-            if (animatedBg) {
-                animatedBg.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            ticking = false;
-        });
-        ticking = true;
-    }
 });

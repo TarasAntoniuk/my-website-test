@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Taras Antoniuk</title>
+    <meta name="description" content="Technical articles by Taras Antoniuk on DEV.to: JOIN FETCH optimization, pagination, JaCoCo, Circuit Breaker patterns.">
+    <meta property="og:title" content="Publications - Taras Antoniuk">
+    <meta property="og:description" content="Technical articles about Java, Spring Boot, and backend development best practices.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tarasantoniuk.com/publications.html">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="animated-bg"></div>
+
+<!-- Dark mode toggle -->
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+</button>
+
+<header data-title="Publications & Articles" data-page="publications"></header>
+
+<div class="container">
+    <section>
+        <h2><i class="fas fa-newspaper"></i> Technical Articles on DEV.to</h2>
+        <p>I write about Java, Spring Boot, and backend development best practices based on real-world production experience.</p>
+
+        <div class="publications-grid">
+            <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-join-fetch-reduced-database-load-by-94-a-real-world-case-study-40c" target="_blank" class="publication-card animate-on-scroll">
+                <div class="publication-header">
+                    <i class="fab fa-dev"></i>
+                    <span class="publication-platform">DEV.to</span>
+                </div>
+                <h3>How JOIN FETCH Reduced Database Load by 94%: A Real-World Case Study</h3>
+                <p>Real-world performance optimization case study demonstrating N+1 query problem resolution and database efficiency improvements.</p>
+                <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-pagination-saved-an-api-from-crashing-a-practical-case-study-4jfb" target="_blank" class="publication-card animate-on-scroll">
+                <div class="publication-header">
+                    <i class="fab fa-dev"></i>
+                    <span class="publication-platform">DEV.to</span>
+                </div>
+                <h3>How Pagination Saved an API from Crashing: A Practical Case Study</h3>
+                <p>Real-world performance optimization case study demonstrating pagination impact on API stability.</p>
+                <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/java-testing-guide-how-to-measure-and-improve-code-coverage-with-jacoco-3p75" target="_blank" class="publication-card animate-on-scroll">
+                <div class="publication-header">
+                    <i class="fab fa-dev"></i>
+                    <span class="publication-platform">DEV.to</span>
+                </div>
+                <h3>Java Testing Guide: How to Measure and Improve Code Coverage with JaCoCo</h3>
+                <p>Comprehensive guide to JaCoCo integration, test coverage measurement, and improvement strategies.</p>
+                <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/circuit-breaker-retry-in-spring-boot-a-practical-guide-with-resilience4j-4m06" target="_blank" class="publication-card animate-on-scroll">
+                <div class="publication-header">
+                    <i class="fab fa-dev"></i>
+                    <span class="publication-platform">DEV.to</span>
+                </div>
+                <h3>Circuit Breaker + Retry in Spring Boot: A Practical Guide with Resilience4j</h3>
+                <p>Practical guide to implementing Circuit Breaker and Retry patterns using Resilience4j, with a demo project demonstrating resilient external API integration.</p>
+                <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<footer></footer>
+
+<script src="js/menu.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

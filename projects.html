@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Taras Antoniuk</title>
+    <meta name="description" content="Portfolio projects by Taras Antoniuk: Financial Accounting with Event Sourcing, MCP Knowledge Base (GraphRAG), Time Tracking API.">
+    <meta property="og:title" content="Projects - Taras Antoniuk">
+    <meta property="og:description" content="Java/Spring Boot portfolio projects with live demos and source code.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tarasantoniuk.com/projects.html">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -80,6 +89,36 @@
                 <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank"><i class="fas fa-globe"></i> Live API & Swagger</a> |
                 <a href="https://tarasantoniuk.com/exchange-rates.html" target="_blank"><i class="fas fa-exchange-alt"></i> Exchange Rates Demo</a> |
                 <a href="https://github.com/TarasAntoniuk/finance" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-brain"></i> MCP Knowledge Base (GraphRAG)</h3>
+            <p>AI-powered code intelligence system that indexes Java codebases and exposes structural and semantic knowledge to Claude Code via the Model Context Protocol (MCP). Combines graph database (Neo4j) for code structure with vector database (ChromaDB) for semantic search, implementing the GraphRAG pattern.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot 4.0.5</span>
+                <span class="tech-tag">Neo4j</span>
+                <span class="tech-tag">ChromaDB</span>
+                <span class="tech-tag">Ollama</span>
+                <span class="tech-tag">MCP (JSON-RPC 2.0)</span>
+                <span class="tech-tag">Docker Compose</span>
+            </div>
+            <p><strong>Architecture:</strong></p>
+            <ul>
+                <li><strong>mcp-indexer</strong> — scans Java source code via AST parsing (JavaParser), stores class/method graph in Neo4j and semantic embeddings in ChromaDB</li>
+                <li><strong>mcp-bridge</strong> — MCP server exposing 5 tools to Claude Code: class search, dependency graph, package browsing, semantic search, and GraphRAG (vector + graph enrichment)</li>
+            </ul>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>GraphRAG: semantic search enriched with dependency graph from Neo4j</li>
+                <li>Neo4j graph schema: classes, methods, IMPORTS/EXTENDS/IMPLEMENTS relationships</li>
+                <li>Vector embeddings via Ollama (nomic-embed-text) for natural language code search</li>
+                <li>Dual transport: HTTP and SSE (Server-Sent Events) with session management</li>
+                <li>Extensible parser interface for multi-language support</li>
+            </ul>
+            <p>
+                <a href="https://github.com/TarasAntoniuk/mcp-knowledge-base" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 

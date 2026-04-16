@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taras Antoniuk - Backend Developer</title>
+    <title>Taras Antoniuk - Senior Backend Java Developer</title>
+    <meta name="description" content="Senior Backend Java Developer with 19+ years of experience. Specializing in REST APIs, Spring Boot, microservices, and high-load enterprise systems.">
+    <meta property="og:title" content="Taras Antoniuk - Senior Backend Java Developer">
+    <meta property="og:description" content="Senior Backend Java Developer with deep expertise in REST APIs, microservices, and high-load enterprise systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tarasantoniuk.com/">
+    <meta property="og:image" content="https://tarasantoniuk.com/images/profile.jpg">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -19,216 +29,107 @@
 
 <header data-title="TARAS ANTONIUK" data-page="index"></header>
 
-<section class="profile-section animate-on-scroll">
-    <div class="profile-photo">
-        <img src="images/profile.jpg" alt="Taras Antoniuk">
-    </div>
-    <div class="profile-info">
-        <h2 class="typing-container">
-            <span class="typing-text"></span>
-            <span class="typing-cursor">|</span>
-        </h2>
-        <p>19+ years of expertise in ERP systems, API development, and database optimization</p>
-        <div class="profile-links">
-            <a href="https://github.com/TarasAntoniuk/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank"><i class="fab fa-hackerrank"></i> HackerRank</a>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-inner">
+        <div class="hero-photo">
+            <img src="images/profile.jpg" alt="Taras Antoniuk" loading="eager">
+        </div>
+        <div class="hero-content">
+            <h2 class="typing-container">
+                <span class="typing-text"></span>
+                <span class="typing-cursor">|</span>
+            </h2>
+            <p class="hero-subtitle">Senior Backend Java Developer with deep expertise in REST APIs, microservices, and high-load enterprise systems. I diagnose bottlenecks, design resilient architectures, and deliver solutions that survive production.</p>
+            <div class="hero-cta">
+                <a href="/projects.html" class="btn btn-primary"><i class="fas fa-code"></i> View Projects</a>
+                <a href="/experience.html" class="btn btn-outline"><i class="fas fa-briefcase"></i> Experience</a>
+            </div>
+            <div class="hero-social">
+                <a href="https://github.com/TarasAntoniuk/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank" aria-label="HackerRank"><i class="fab fa-hackerrank"></i></a>
+                <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee" target="_blank" aria-label="DEV.to"><i class="fab fa-dev"></i></a>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- Stats Bar -->
+<section class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-number">19+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Years Java</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Publications</div>
+        </div>
+    </div>
+</section>
+
+<!-- About Me -->
 <section id="about" class="animate-on-scroll">
     <h2><i class="fas fa-user"></i> About Me</h2>
-    <p>I am Taras Antoniuk, an experienced Backend Developer with over 19 years of expertise in ERP systems, complex data integration, and relational databases. I specialize in designing and delivering scalable, high-performance RESTFul APIs, with a recent focus (2024) on Java and Spring Boot.</p>
+    <p>I am Taras Antoniuk, a Senior Backend Java Developer with 19+ years of enterprise software development experience. From database optimization to distributed systems with Event Sourcing and AWS — I own problems end-to-end.</p>
 
-    <p>Throughout my career, I have optimized SQL queries, streamlined enterprise workflows, and built robust backend services that drive tangible business impact. I have extensive experience in microservices architecture, database design, and API development, ensuring solutions are maintainable, efficient, and secure.</p>
-
-    <p><strong>Key areas of expertise include:</strong></p>
+    <p style="margin-top: 16px;"><strong>Key expertise:</strong></p>
     <ul>
-        <li>Java Core, Collections, Spring Boot 3.X, Jakarta, JPA, Spring MVC, JDBC</li>
-        <li>REST API design and integration</li>
-        <li>SQL optimization, database modeling, and cross-database data exchange</li>
-        <li>ERP systems development and automation (1C, PeopleSoft)</li>
-        <li>Tools and technologies: Maven, Git, Docker, Swagger/OpenAPI, Postman</li>
-        <li>Analytical mindset applied to accounting, planning, and business workflows</li>
+        <li>Java 21, Spring Boot 3.X, Spring Security (JWT, RBAC), JPA, Hibernate</li>
+        <li>Architecture: Event Sourcing, CQRS, Saga, Circuit Breaker, Retry</li>
+        <li>Apache Kafka, Resilience4j, REST API design</li>
+        <li>PostgreSQL, Oracle, MS SQL — advanced SQL optimization</li>
+        <li>Docker, GitHub Actions CI/CD, AWS (EC2, RDS, S3)</li>
+        <li>AI/ML: MCP, GraphRAG, Neo4j, ChromaDB, Vector Embeddings</li>
     </ul>
 </section>
 
-<section id="qualifications" class="animate-on-scroll">
-    <h2><i class="fas fa-award"></i> Summary of Qualifications</h2>
-    <ul>
-        <li>19 years of development experience, primarily in the fintech sector</li>
-        <li>10+ years working with object-oriented languages</li>
-        <li>4+ years of experience in RESTFul API and microservices development</li>
-        <li>Proficient in Java Core, Collections, Spring Boot 3.X, Jakarta, JPA, Spring MVC, JDBC</li>
-        <li>Experienced in Maven, Git, Docker, Docker Compose</li>
-        <li>Deep experience in database table design and query optimization</li>
-        <li>Strong SQL skills with PostgreSQL, Oracle, MS SQL</li>
-        <li>Extensive scripting experience and development using 1C, PeopleSoft frameworks</li>
-    </ul>
+<!-- Quick Preview Grid -->
+<section class="animate-on-scroll">
+    <h2><i class="fas fa-th-large"></i> Explore</h2>
+    <div class="preview-grid">
+        <a href="/experience.html" class="preview-card">
+            <div class="preview-card-icon purple"><i class="fas fa-briefcase"></i></div>
+            <h3>Experience</h3>
+            <p>Java Backend Developer at a logistics platform (USA). Previously: PeopleSoft at St. Lawrence College, construction tech, enterprise agriculture.</p>
+            <span class="preview-link">View Timeline <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="/projects.html" class="preview-card">
+            <div class="preview-card-icon green"><i class="fas fa-code"></i></div>
+            <h3>Projects</h3>
+            <p>Financial Accounting with Event Sourcing, MCP Knowledge Base (GraphRAG), Time Tracking API, and more.</p>
+            <span class="preview-link">View Projects <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="/publications.html" class="preview-card">
+            <div class="preview-card-icon blue"><i class="fas fa-newspaper"></i></div>
+            <h3>Publications</h3>
+            <p>Technical articles on DEV.to: JOIN FETCH optimization, pagination, JaCoCo testing, Circuit Breaker patterns.</p>
+            <span class="preview-link">Read Articles <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="/skills.html" class="preview-card">
+            <div class="preview-card-icon orange"><i class="fas fa-layer-group"></i></div>
+            <h3>Skills</h3>
+            <p>Java, Spring Boot, Kafka, AWS, Docker, Neo4j, GraphRAG — full breakdown of 12 technology categories.</p>
+            <span class="preview-link">View Skills <i class="fas fa-arrow-right"></i></span>
+        </a>
+    </div>
 </section>
 
-<section id="experience" class="animate-on-scroll">
-    <h2><i class="fas fa-briefcase"></i> Professional Employment Experience</h2>
-    <p>For full details, please visit the <a href="experience.html">Experience page</a>.</p>
-</section>
-
+<!-- Education & Certifications -->
 <section id="education" class="animate-on-scroll">
-    <h2><i class="fas fa-graduation-cap"></i> Education & Training</h2>
+    <h2><i class="fas fa-graduation-cap"></i> Education & Certifications</h2>
     <p><strong>Bachelor's Degree in Applied Mathematics</strong><br>
-        National Technical University of Ukraine (2001 – 2013)</p>
-
-    <h2 style="margin-top: 30px;"><i class="fas fa-certificate"></i> Certifications</h2>
-    <p>View all my professional certifications on the <a href="certificates.html">Certificates page</a>.</p>
-</section>
-
-<section id="skills" class="animate-on-scroll">
-    <h2><i class="fas fa-code"></i> Technical Skills</h2>
-
-    <!-- Skills Chart -->
-    <div class="skills-chart">
-        <div class="skill-bar">
-            <div class="skill-info">
-                <span>Java / Spring Boot</span>
-                <span>95%</span>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-fill" data-width="95"></div>
-            </div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-info">
-                <span>SQL / Databases</span>
-                <span>98%</span>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-fill" data-width="98"></div>
-            </div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-info">
-                <span>REST APIs</span>
-                <span>95%</span>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-fill" data-width="95"></div>
-            </div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-info">
-                <span>Docker / DevOps</span>
-                <span>85%</span>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-fill" data-width="85"></div>
-            </div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-info">
-                <span>Testing (JUnit, Testcontainers)</span>
-                <span>90%</span>
-            </div>
-            <div class="skill-progress">
-                <div class="skill-fill" data-width="90"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Skills Grid with Icons -->
-    <div class="skills-grid">
-        <div class="skill-category">
-            <h3><i class="fas fa-laptop-code"></i> Languages</h3>
-            <div class="skill-tags">
-                <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
-                <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
-                <span class="skill-tag">PeopleCode</span>
-                <span class="skill-tag">PL/SQL</span>
-                <span class="skill-tag">1C</span>
-                <span class="skill-tag">SQR</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
-            <div class="skill-tags">
-                <span class="skill-tag"><i class="fas fa-leaf"></i> Spring Boot</span>
-                <span class="skill-tag">Jakarta</span>
-                <span class="skill-tag">JPA</span>
-                <span class="skill-tag">JDBC</span>
-                <span class="skill-tag">Hibernate</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3><i class="fas fa-database"></i> Databases</h3>
-            <div class="skill-tags">
-                <span class="skill-tag"><i class="fas fa-elephant"></i> PostgreSQL</span>
-                <span class="skill-tag">Oracle DB</span>
-                <span class="skill-tag">MS SQL Server</span>
-                <span class="skill-tag"><i class="fas fa-bolt"></i> Redis</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3><i class="fas fa-vial"></i> Testing</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">JUnit 5</span>
-                <span class="skill-tag"><i class="fab fa-docker"></i> Testcontainers</span>
-                <span class="skill-tag">JaCoCo</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3><i class="fas fa-rocket"></i> DevOps & CI/CD</h3>
-            <div class="skill-tags">
-                <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
-                <span class="skill-tag">Docker Compose</span>
-                <span class="skill-tag"><i class="fab fa-github"></i> GitHub Actions</span>
-                <span class="skill-tag">nginx</span>
-                <span class="skill-tag">Liquibase</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3><i class="fas fa-tools"></i> Tools</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Maven</span>
-                <span class="skill-tag">Gradle</span>
-                <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
-                <span class="skill-tag">Swagger/OpenAPI</span>
-                <span class="skill-tag">Postman</span>
-                <span class="skill-tag">Fiddler</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="publications" class="animate-on-scroll">
-    <h2><i class="fas fa-newspaper"></i> Publications & Articles</h2>
-    <div class="publications-grid">
-        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-join-fetch-reduced-database-load-by-94-a-real-world-case-study-40c" target="_blank" class="publication-card">
-            <div class="publication-header">
-                <i class="fab fa-dev"></i>
-                <span class="publication-platform">DEV.to</span>
-            </div>
-            <h3>How JOIN FETCH Reduced Database Load by 94%: A Real-World Case Study</h3>
-            <p>Real-world performance optimization case study demonstrating N+1 query problem resolution and database efficiency improvements.</p>
-            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
-        </a>
-        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-pagination-saved-an-api-from-crashing-a-practical-case-study-4jfb" target="_blank" class="publication-card">
-            <div class="publication-header">
-                <i class="fab fa-dev"></i>
-                <span class="publication-platform">DEV.to</span>
-            </div>
-            <h3>How Pagination Saved an API from Crashing: A Practical Case Study</h3>
-            <p>Real-world performance optimization case study demonstrating pagination impact on API stability.</p>
-            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
-        </a>
-        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/java-testing-guide-how-to-measure-and-improve-code-coverage-with-jacoco-3p75" target="_blank" class="publication-card">
-            <div class="publication-header">
-                <i class="fab fa-dev"></i>
-                <span class="publication-platform">DEV.to</span>
-            </div>
-            <h3>Java Testing Guide: How to Measure and Improve Code Coverage with JaCoCo</h3>
-            <p>Comprehensive guide to JaCoCo integration, test coverage measurement, and improvement strategies.</p>
-            <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
-        </a>
-    </div>
+        National Technical University of Ukraine (2007 – 2013)</p>
+    <p style="margin-top: 16px;">HackerRank Certifications: <strong>Java Basic</strong>, <strong>SQL Intermediate</strong>, <strong>SQL Advanced</strong> — <a href="certificates.html">view all certificates</a>.</p>
 </section>
 
 <footer></footer>
