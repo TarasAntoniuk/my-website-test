@@ -181,7 +181,7 @@ function createFooter() {
                     <p>Senior Backend Java Developer specializing in REST APIs, microservices, and high-load enterprise systems.</p>
                     <div class="footer-social">
                         <a href="https://github.com/TarasAntoniuk/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/taras-antoniuk/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank" aria-label="HackerRank"><i class="fab fa-hackerrank"></i></a>
                         <a href="https://dev.to/taras_antoniuk" target="_blank" aria-label="DEV.to"><i class="fab fa-dev"></i></a>
                     </div>
