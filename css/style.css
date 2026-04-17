@@ -231,6 +231,54 @@ nav a.nav-cta:hover {
     color: white;
 }
 
+nav a.nav-hire {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+nav a.nav-hire:hover {
+    color: #16a34a;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+nav a.nav-hire.active {
+    color: #16a34a;
+    background: rgba(34, 197, 94, 0.12);
+}
+
+.mobile-nav a.nav-hire {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.mobile-nav a.nav-hire:hover,
+.mobile-nav a.nav-hire.active {
+    color: #16a34a;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+/* Available for Hire badge */
+.hire-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #22c55e;
+    color: white;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.85em;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hire-badge:hover {
+    background: #16a34a;
+    color: white;
+    transform: translateY(-1px);
+}
+
 /* Hamburger menu button */
 .hamburger {
     display: none;
