@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Taras Antoniuk — Senior Java Backend Developer</title>
+    <meta name="description" content="Senior Java Backend Developer available for full-time, contract, or one-off projects. Remote worldwide & Barcelona hybrid. 19+ years IT, Java 21, Spring Boot, Kafka, PostgreSQL, AWS.">
+    <meta property="og:title" content="Hire Taras Antoniuk — Senior Java Backend Developer">
+    <meta property="og:description" content="Senior Java Backend Developer available for full-time, contract, or one-off projects. Remote worldwide & Barcelona hybrid. Java 21, Spring Boot, Kafka, PostgreSQL, AWS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tarasantoniuk.com/hire.html">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0f1117;
+            --bg-card: #181a23;
+            --bg-card-hover: #1e2130;
+            --border: #2a2d3a;
+            --text: #e8e9ed;
+            --text-secondary: #9ca0af;
+            --accent: #22c55e;
+            --accent-dim: rgba(34,197,94,0.12);
+            --blue: #3b82f6;
+            --blue-dim: rgba(59,130,246,0.1);
+            --font-body: 'DM Sans', system-ui, sans-serif;
+            --font-heading: 'Space Grotesk', 'DM Sans', sans-serif;
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Subtle grid background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 80px 0 56px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(34,197,94,0.2);
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
+        }
+
+        .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+        }
+
+        .hero .subtitle span {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ── Status row ── */
+        .status-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .status-row .item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-row .item i {
+            color: var(--accent);
+            font-size: 0.75rem;
+        }
+
+        /* ── Impact cards ── */
+        .impact-section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .impact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .impact-card:hover {
+            background: var(--bg-card-hover);
+            border-color: #3a3d4a;
+        }
+
+        .impact-card .number {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .impact-card .label {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* ── Expertise row ── */
+        .expertise-section {
+            margin-bottom: 48px;
+        }
+
+        .expertise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .expertise-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .expertise-item i {
+            color: var(--blue);
+            margin-top: 3px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        /* ── Contact section ── */
+        .contact-section {
+            text-align: center;
+            padding: 48px 0 80px;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-section .note {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0f1117;
+        }
+
+        .btn-primary:hover {
+            background: #16a34a;
+            box-shadow: 0 4px 20px rgba(34,197,94,0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: #5a5d6a;
+            background: var(--bg-card);
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 0 48px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero { padding: 56px 0 40px; }
+            .hero h1 { font-size: 1.9rem; }
+            .impact-grid { grid-template-columns: 1fr; }
+            .status-row { flex-direction: column; align-items: center; gap: 10px; }
+            .cta-group { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+        }
+
+        /* ── Fade-in on scroll ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Hero -->
+    <section class="hero fade-up">
+        <div class="status-badge">
+            <span class="dot"></span> Available for Hire
+        </div>
+        <h1>Ready to Join Your Team</h1>
+        <p class="subtitle">
+            <span>Senior Java Backend Developer</span> &nbsp;·&nbsp; Remote Worldwide &amp; Barcelona Hybrid
+        </p>
+        <div class="status-row">
+            <div class="item"><i class="fas fa-check-circle"></i> Immediate start</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Full-time or contract</div>
+            <div class="item"><i class="fas fa-check-circle"></i> EU work authorization</div>
+        </div>
+    </section>
+
+    <hr class="divider" style="margin-top: 0;">
+
+    <!-- Core Expertise -->
+    <section class="expertise-section fade-up">
+        <div class="section-label">Core Expertise</div>
+        <div class="expertise-list">
+            <div class="expertise-item">
+                <i class="fas fa-cube"></i>
+                <span>Java 21, Spring Boot 3.x, REST APIs, Kafka, Event Sourcing/CQRS — production microservices</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-database"></i>
+                <span>PostgreSQL optimization, high-load systems, real-time IoT/GPS data processing</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-cloud"></i>
+                <span>AWS (EC2, RDS, S3) &amp; VPS deployments — Docker, CI/CD, nginx, SSL</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-shield-halved"></i>
+                <span>Spring Security (JWT, RBAC), Resilience4j, 93%+ test coverage with Testcontainers</span>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Contact -->
+    <section class="contact-section fade-up">
+        <h2>Let's Talk</h2>
+        <p class="note">I respond within 24 hours</p>
+        <div class="cta-group">
+            <a href="mailto:tarasantoniukr@gmail.com" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Send Email
+            </a>
+            <a href="https://www.linkedin.com/in/taras-antoniuk/" target="_blank" rel="noopener" class="btn btn-outline">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            <a href="https://github.com/TarasAntoniuk" target="_blank" rel="noopener" class="btn btn-outline">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
