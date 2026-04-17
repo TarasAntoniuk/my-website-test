@@ -33,6 +33,35 @@
         <h2><i class="fas fa-project-diagram"></i> Current Projects</h2>
 
         <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-calendar-check"></i> Booking System</h3>
+            <p>Full-featured booking and reservation management system with real-time availability checking, conflict prevention via pessimistic locking, and Kafka-based notifications.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">PostgreSQL 17</span>
+                <span class="tech-tag">Apache Kafka</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">AWS</span>
+            </div>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Redis caching for high-performance availability queries</li>
+                <li>Pessimistic locking and GiST exclusion constraints for conflict-free booking</li>
+                <li>Kafka-based notification system for booking events</li>
+                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy to EC2</li>
+            </ul>
+            <p><strong>Production Infrastructure (AWS):</strong></p>
+            <ul>
+                <li>AWS: EC2 (Spring Boot app), RDS PostgreSQL 17, S3 backups, Security Groups</li>
+                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy to EC2</li>
+            </ul>
+            <p>
+                <a href="https://github.com/TarasAntoniuk" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-card animate-on-scroll">
             <h3><i class="fas fa-clock"></i> Time Tracking System</h3>
             <p>Enterprise-grade employee time tracking system with check-in/check-out logging, real-time presence monitoring, and automated timesheet calculation.</p>
             <div class="tech-stack">
@@ -40,6 +69,8 @@
                 <span class="tech-tag">Spring Boot 3.x</span>
                 <span class="tech-tag">PostgreSQL</span>
                 <span class="tech-tag">REST API</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">nginx</span>
             </div>
             <p><strong>Features:</strong></p>
             <ul>
@@ -47,6 +78,12 @@
                 <li>Automated timesheet calculation with daily breakdown</li>
                 <li>Check-in/check-out logging system</li>
                 <li>RESTful API with OpenAPI documentation</li>
+            </ul>
+            <p><strong>Production Infrastructure (VPS):</strong></p>
+            <ul>
+                <li>VPS: Docker Compose, nginx reverse proxy, SSL/TLS (Let's Encrypt)</li>
+                <li>CI/CD: GitHub Actions — automated build, test, deploy</li>
+                <li>Live API: <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank">Swagger UI</a></li>
             </ul>
             <p>
                 <a href="projects/timetracking/index.html"><i class="fas fa-rocket"></i> View Live Demo</a> |
@@ -84,6 +121,12 @@
                 <li>193 tests with 97% line & 95% branch coverage</li>
                 <li>N+1 Prevention with @EntityGraph</li>
                 <li>CI/CD with GitHub Actions</li>
+            </ul>
+            <p><strong>Production Infrastructure (VPS):</strong></p>
+            <ul>
+                <li>VPS: Docker Compose, nginx reverse proxy, SSL/TLS (Let's Encrypt)</li>
+                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy</li>
+                <li>Monitoring: health checks, 99.5%+ uptime</li>
             </ul>
             <p>
                 <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank"><i class="fas fa-globe"></i> Live API & Swagger</a> |
