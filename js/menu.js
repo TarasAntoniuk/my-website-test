@@ -20,7 +20,8 @@ const menuStructure = [
             { text: 'Certificates', href: '/certificates.html', page: 'certificates' }
         ]
     },
-    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' }
+    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' },
+    { text: 'Hire Me', href: '/hire.html', page: 'hire', className: 'nav-hire' }
 ];
 
 // Flat list for mobile menu
@@ -34,7 +35,9 @@ const mobileMenuItems = [
     { text: 'Publications', href: '/publications.html', page: 'publications' },
     { text: 'Certificates', href: '/certificates.html', page: 'certificates' },
     { divider: true },
-    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' }
+    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' },
+    { divider: true },
+    { text: 'Hire Me', href: '/hire.html', page: 'hire', className: 'nav-hire' }
 ];
 
 function isPortfolioActive(currentPage) {
@@ -78,6 +81,7 @@ function createMenu(currentPage) {
             link.href = item.href;
             link.textContent = item.text;
             if (item.page === currentPage) link.classList.add('active');
+            if (item.className) link.classList.add(item.className);
             nav.appendChild(link);
         }
     });
@@ -107,6 +111,7 @@ function createMobileMenu(currentPage) {
             link.href = item.href;
             link.textContent = item.text;
             if (item.page === currentPage) link.classList.add('active');
+            if (item.className) link.classList.add(item.className);
             link.addEventListener('click', closeMobileMenu);
             mobileNav.appendChild(link);
         }
@@ -176,9 +181,9 @@ function createFooter() {
                     <p>Senior Backend Java Developer specializing in REST APIs, microservices, and high-load enterprise systems.</p>
                     <div class="footer-social">
                         <a href="https://github.com/TarasAntoniuk/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/taras-antoniuk/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank" aria-label="HackerRank"><i class="fab fa-hackerrank"></i></a>
-                        <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee" target="_blank" aria-label="DEV.to"><i class="fab fa-dev"></i></a>
+                        <a href="https://dev.to/taras_antoniuk" target="_blank" aria-label="DEV.to"><i class="fab fa-dev"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -193,6 +198,7 @@ function createFooter() {
                     <a href="/publications.html">Publications</a>
                     <a href="/certificates.html">Certificates</a>
                     <a href="/exchange-rates.html">Exchange Rates</a>
+                    <a href="/hire.html">Hire Me</a>
                 </div>
             </div>
             <div class="footer-bottom">
