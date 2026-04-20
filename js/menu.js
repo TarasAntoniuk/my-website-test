@@ -1,6 +1,6 @@
 // Navigation structure with grouped items
 const menuStructure = [
-    { text: 'Home', href: '/index.html', page: 'index' },
+    { text: 'Home', href: '/', page: 'index' },
     {
         text: 'About',
         page: 'index',
@@ -10,34 +10,34 @@ const menuStructure = [
             { text: 'Education', href: '/index.html#education' }
         ]
     },
-    { text: 'Experience', href: '/experience.html', page: 'experience' },
-    { text: 'Skills', href: '/skills.html', page: 'skills' },
+    { text: 'Experience', href: '/experience/', page: 'experience' },
+    { text: 'Skills', href: '/skills/', page: 'skills' },
     {
         text: 'Portfolio',
         submenu: [
-            { text: 'Projects', href: '/projects.html', page: 'projects' },
-            { text: 'Publications', href: '/publications.html', page: 'publications' },
-            { text: 'Certificates', href: '/certificates.html', page: 'certificates' }
+            { text: 'Projects', href: '/projects/', page: 'projects' },
+            { text: 'Publications', href: '/publications/', page: 'publications' },
+            { text: 'Certificates', href: '/certificates/', page: 'certificates' }
         ]
     },
-    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' },
-    { text: 'Hire Me', href: '/hire.html', page: 'hire', className: 'nav-hire' }
+    { text: 'Exchange Rates', href: '/exchange-rates/', page: 'exchange-rates' },
+    { text: 'Hire Me', href: '/hire/', page: 'hire', className: 'nav-hire' }
 ];
 
 // Flat list for mobile menu
 const mobileMenuItems = [
-    { text: 'Home', href: '/index.html', page: 'index' },
+    { text: 'Home', href: '/', page: 'index' },
     { text: 'About Me', href: '/index.html#about', page: 'index' },
-    { text: 'Experience', href: '/experience.html', page: 'experience' },
-    { text: 'Skills', href: '/skills.html', page: 'skills' },
+    { text: 'Experience', href: '/experience/', page: 'experience' },
+    { text: 'Skills', href: '/skills/', page: 'skills' },
     { divider: true },
-    { text: 'Projects', href: '/projects.html', page: 'projects' },
-    { text: 'Publications', href: '/publications.html', page: 'publications' },
-    { text: 'Certificates', href: '/certificates.html', page: 'certificates' },
+    { text: 'Projects', href: '/projects/', page: 'projects' },
+    { text: 'Publications', href: '/publications/', page: 'publications' },
+    { text: 'Certificates', href: '/certificates/', page: 'certificates' },
     { divider: true },
-    { text: 'Exchange Rates', href: '/exchange-rates.html', page: 'exchange-rates' },
+    { text: 'Exchange Rates', href: '/exchange-rates/', page: 'exchange-rates' },
     { divider: true },
-    { text: 'Hire Me', href: '/hire.html', page: 'hire', className: 'nav-hire' }
+    { text: 'Hire Me', href: '/hire/', page: 'hire', className: 'nav-hire' }
 ];
 
 function isPortfolioActive(currentPage) {
@@ -188,17 +188,17 @@ function createFooter() {
                 </div>
                 <div class="footer-links">
                     <h4>Navigation</h4>
-                    <a href="/index.html">Home</a>
-                    <a href="/experience.html">Experience</a>
-                    <a href="/skills.html">Skills</a>
-                    <a href="/projects.html">Projects</a>
+                    <a href="/">Home</a>
+                    <a href="/experience/">Experience</a>
+                    <a href="/skills/">Skills</a>
+                    <a href="/projects/">Projects</a>
                 </div>
                 <div class="footer-links">
                     <h4>More</h4>
-                    <a href="/publications.html">Publications</a>
-                    <a href="/certificates.html">Certificates</a>
-                    <a href="/exchange-rates.html">Exchange Rates</a>
-                    <a href="/hire.html">Hire Me</a>
+                    <a href="/publications/">Publications</a>
+                    <a href="/certificates/">Certificates</a>
+                    <a href="/exchange-rates/">Exchange Rates</a>
+                    <a href="/hire/">Hire Me</a>
                 </div>
             </div>
             <div class="footer-bottom">
