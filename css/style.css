@@ -1211,11 +1211,13 @@ body.dark-mode .publication-header i {
 }
 
 .certificate img {
-    width: 100%;
-    max-width: 650px;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto 16px;
     border-radius: var(--radius-sm);
     border: 2px solid var(--border-color);
-    margin-bottom: 16px;
 }
 
 .certificate p {
