@@ -6,7 +6,6 @@ const menuStructure = [
         page: 'index',
         submenu: [
             { text: 'About Me', href: '/index.html#about' },
-            { text: 'Qualifications', href: '/index.html#qualifications' },
             { text: 'Education', href: '/index.html#education' }
         ]
     },
