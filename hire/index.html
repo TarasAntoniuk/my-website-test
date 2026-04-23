@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         /* ── Reset & Base ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -306,9 +307,67 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ── Header / nav / footer overrides for the dark hire palette ── */
+        header {
+            background: var(--bg-card);
+            border-bottom-color: var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        header h1 { color: var(--text); }
+        nav a, nav .dropbtn { color: var(--text-secondary); }
+        nav a:hover, nav .dropbtn:hover,
+        .dropdown:hover .dropbtn {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        nav a.active, nav .dropbtn.active {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .dropdown-content {
+            background-color: var(--bg-card);
+            border-color: var(--border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown-content a { color: var(--text); }
+        .dropdown-content a:hover {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .hamburger span { background: var(--text); }
+        .mobile-nav { background: var(--bg-card); }
+        .mobile-nav a { color: var(--text); }
+        .mobile-nav a:hover, .mobile-nav a.active {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .mobile-nav .mobile-nav-divider { background: var(--border); }
+        footer {
+            background: var(--bg-card);
+            border-top-color: var(--border);
+        }
+        .footer-brand h3, .footer-links h4 { color: var(--text); }
+        .footer-brand p, .footer-links a { color: var(--text-secondary); }
+        .footer-social a {
+            background: var(--bg);
+            border-color: var(--border);
+            color: var(--text-secondary);
+        }
+        .footer-social a:hover, .footer-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .footer-bottom {
+            border-top-color: var(--border);
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
+
+<header data-title="Hire Me" data-page="hire"></header>
 
 <div class="container">
 
@@ -374,6 +433,9 @@
 
 </div>
 
+<footer></footer>
+
+<script src="/js/menu.js"></script>
 <script>
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
