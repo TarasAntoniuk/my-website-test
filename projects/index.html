@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Taras Antoniuk</title>
-    <meta name="description" content="Portfolio projects by Taras Antoniuk: Financial Accounting with Event Sourcing, MCP Knowledge Base (GraphRAG), Time Tracking API.">
+    <meta name="description" content="Portfolio projects by Taras Antoniuk: Financial Accounting with Event Sourcing and JWT security, Booking System, Time Tracking API, production Docker infrastructure, and MCP Knowledge Base (GraphRAG).">
     <meta property="og:title" content="Projects - Taras Antoniuk">
-    <meta property="og:description" content="Java/Spring Boot portfolio projects with live demos and source code.">
+    <meta property="og:description" content="Java 21 and Spring Boot portfolio projects with live demos, production deployments, and source code.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tarasantoniuk.com/projects/">
     <meta property="og:image" content="https://tarasantoniuk.com/images/profile.jpg">
     <meta property="og:site_name" content="Taras Antoniuk">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Projects - Taras Antoniuk">
-    <meta name="twitter:description" content="Java/Spring Boot portfolio projects with live demos and source code.">
+    <meta name="twitter:description" content="Java 21 and Spring Boot portfolio projects with live demos, production deployments, and source code.">
     <meta name="twitter:image" content="https://tarasantoniuk.com/images/profile.jpg">
     <link rel="canonical" href="https://tarasantoniuk.com/projects/">
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
@@ -54,23 +54,89 @@
         <h2><i class="fas fa-project-diagram"></i> Current Projects</h2>
 
         <div class="project-card animate-on-scroll">
-            <h3><i class="fas fa-calendar-check"></i> Booking System</h3>
-            <p>Full-featured booking and reservation management system with real-time availability checking, conflict prevention via pessimistic locking, and Kafka-based notifications.</p>
+            <h3><i class="fas fa-coins"></i> Financial Accounting System</h3>
+            <p>Enterprise-grade financial accounting platform with Event Sourcing for banking operations, JWT-secured multi-tenant access, and automatic ECB currency integration. Modular monolith split into Core, Banking and Security modules, running in production with a live web frontend.</p>
             <div class="tech-stack">
                 <span class="tech-tag">Java 21</span>
                 <span class="tech-tag">Spring Boot</span>
                 <span class="tech-tag">PostgreSQL 17</span>
-                <span class="tech-tag">Apache Kafka</span>
-                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Event Sourcing</span>
+                <span class="tech-tag">Spring Security (JWT)</span>
+                <span class="tech-tag">Resilience4j</span>
+                <span class="tech-tag">Testcontainers</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <p><strong>Core Module:</strong></p>
+            <ul>
+                <li>Automatic ECB integration — daily sync at 16:05 CET</li>
+                <li>190k+ exchange rates — historical data since the introduction of the EUR</li>
+                <li>40+ currencies, ISO 4217 compliant</li>
+                <li>Organizations, countries, counterparties and accounting policies</li>
+            </ul>
+            <p><strong>Banking Module:</strong></p>
+            <ul>
+                <li>Event Sourcing — immutable, append-only transaction audit trail</li>
+                <li>Bank receipts and payments — 10+ transaction types each</li>
+                <li>Document lifecycle: DRAFT → POST → UNPOST</li>
+                <li>Balance and turnover reports with filters</li>
+                <li>Balance snapshots with validity tracking and auto-invalidation</li>
+            </ul>
+            <p><strong>Security Module:</strong></p>
+            <ul>
+                <li>JWT authentication (HMAC-SHA256) — 15-minute access tokens, 7-day refresh tokens with rotation</li>
+                <li>Role-based access control: ADMIN, USER, GUEST</li>
+                <li>Account lockout — 5 failed attempts trigger a 30-minute lock</li>
+                <li>Rate limiting via Resilience4j — 5 requests per 60s on auth endpoints</li>
+                <li>Refresh tokens in HttpOnly SameSite=Strict cookies, with a token blacklist for immediate logout</li>
+                <li>Security audit logging and a multi-tenancy foundation binding users to organizations</li>
+            </ul>
+            <p><strong>Quality:</strong></p>
+            <ul>
+                <li>1120+ test methods across 67 test files</li>
+                <li>99.7% line and 97.5% branch coverage, gated in CI at 80%/75% by JaCoCo</li>
+                <li>N+1 prevention with JOIN FETCH — see the <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/how-join-fetch-reduced-database-load-by-94-a-real-world-case-study-40c" target="_blank" rel="noopener">case study</a></li>
+                <li>Integration tests on real PostgreSQL 17 via Testcontainers</li>
+            </ul>
+            <p><strong>Production Infrastructure (VPS):</strong></p>
+            <ul>
+                <li>Docker Compose, nginx reverse proxy, SSL/TLS (Let's Encrypt)</li>
+                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy</li>
+                <li>Monitoring: health checks, 99.5%+ uptime</li>
+            </ul>
+            <p>
+                <a href="https://finance.tarasantoniuk.com/" target="_blank" rel="noopener"><i class="fas fa-desktop"></i> Live Application</a> |
+                <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Live API &amp; Swagger</a> |
+                <a href="/exchange-rates/"><i class="fas fa-exchange-alt"></i> Exchange Rates Demo</a> |
+                <a href="https://github.com/TarasAntoniuk/finance" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-calendar-check"></i> Booking System</h3>
+            <p>Booking and reservation API with real-time availability checking, double-booking prevention, a timed payment window, and Redis-cached statistics.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot 3.5</span>
+                <span class="tech-tag">PostgreSQL 17</span>
+                <span class="tech-tag">Redis 7</span>
+                <span class="tech-tag">Gradle</span>
+                <span class="tech-tag">Testcontainers</span>
                 <span class="tech-tag">Docker</span>
                 <span class="tech-tag">AWS</span>
             </div>
             <p><strong>Key Features:</strong></p>
             <ul>
-                <li>Redis caching for high-performance availability queries</li>
-                <li>Pessimistic locking and GiST exclusion constraints for conflict-free booking</li>
-                <li>Kafka-based notification system for booking events</li>
-                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy to EC2</li>
+                <li>15-minute payment window — a scheduled job automatically cancels unpaid bookings</li>
+                <li>Double-booking prevention for overlapping reservations</li>
+                <li>Advanced search with real-time availability, built on the Specification pattern for dynamic queries</li>
+                <li>Redis caching with automatic invalidation on data changes</li>
+                <li>Event logging — an audit trail for every state change</li>
+            </ul>
+            <p><strong>Testing Strategy:</strong></p>
+            <ul>
+                <li>Two-tier approach: fast H2 in-memory unit and repository tests</li>
+                <li>Production-like end-to-end tests against PostgreSQL 17 via Testcontainers</li>
+                <li>Coverage reported with JaCoCo</li>
             </ul>
             <p><strong>Production Infrastructure (AWS):</strong></p>
             <ul>
@@ -78,7 +144,7 @@
                 <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy to EC2</li>
             </ul>
             <p>
-                <a href="https://github.com/TarasAntoniuk" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://github.com/TarasAntoniuk/booking-system" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 
@@ -107,61 +173,68 @@
                 <li>Live API: <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank" rel="noopener">Swagger UI</a></li>
             </ul>
             <p>
-                <a href="projects/timetracking/index.html"><i class="fas fa-rocket"></i> View Live Demo</a> |
+                <a href="/projects/timetracking/"><i class="fas fa-rocket"></i> View Live Demo</a> |
                 <a href="https://timetracking.tarasantoniuk.com/swagger-ui/index.html" target="_blank" rel="noopener"><i class="fas fa-book"></i> API Documentation</a> |
                 <a href="https://github.com/TarasAntoniuk/time-tracking" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 
         <div class="project-card animate-on-scroll">
-            <h3><i class="fas fa-coins"></i> Financial Accounting System</h3>
-            <p>Enterprise-grade financial accounting system with Event Sourcing for banking operations and automatic ECB currency integration. Modular monolith architecture with comprehensive test coverage.</p>
+            <h3><i class="fas fa-server"></i> Production Infrastructure</h3>
+            <p>Centralized, Docker-based infrastructure that hosts every production backend: one shared PostgreSQL instance, an nginx reverse proxy, and automated SSL certificate management serving multiple applications behind a single entry point.</p>
             <div class="tech-stack">
-                <span class="tech-tag">Java 21</span>
-                <span class="tech-tag">Spring Boot 3.5.5</span>
-                <span class="tech-tag">PostgreSQL 17</span>
-                <span class="tech-tag">Event Sourcing</span>
-                <span class="tech-tag">Testcontainers</span>
+                <span class="tech-tag">Docker Compose</span>
+                <span class="tech-tag">nginx</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Certbot</span>
+                <span class="tech-tag">Let's Encrypt</span>
+                <span class="tech-tag">Bash</span>
+                <span class="tech-tag">GitHub Actions</span>
             </div>
-            <p><strong>Core Module:</strong></p>
+            <p><strong>What it runs:</strong></p>
             <ul>
-                <li>Automatic ECB Integration - Daily sync at 16:05 CET</li>
-                <li>190k+ Exchange Rates - Historical data since EUR introduction</li>
-                <li>40+ Currencies - ISO 4217 compliant</li>
-                <li>Public API - Real-time currency data</li>
-            </ul>
-            <p><strong>Banking Module:</strong></p>
-            <ul>
-                <li>Event Sourcing - Immutable transaction audit trail</li>
-                <li>Bank Receipts & Payments - 10+ transaction types each</li>
-                <li>Document Lifecycle - DRAFT → POST → UNPOST</li>
-                <li>Financial Reports - Balance & Turnover with filters</li>
-            </ul>
-            <p><strong>Quality:</strong></p>
-            <ul>
-                <li>193 tests with 97% line & 95% branch coverage</li>
-                <li>N+1 Prevention with @EntityGraph</li>
-                <li>CI/CD with GitHub Actions</li>
-            </ul>
-            <p><strong>Production Infrastructure (VPS):</strong></p>
-            <ul>
-                <li>VPS: Docker Compose, nginx reverse proxy, SSL/TLS (Let's Encrypt)</li>
-                <li>CI/CD: GitHub Actions — automated build, test, Docker push, deploy</li>
-                <li>Monitoring: health checks, 99.5%+ uptime</li>
+                <li>nginx reverse proxy with per-application configs — routes <code>api.tarasantoniuk.com</code> to the Finance app and <code>timetracking.tarasantoniuk.com</code> to the Time Tracking app</li>
+                <li>Shared PostgreSQL container with a database initialization script and isolated per-application credentials</li>
+                <li>Certbot with a webroot challenge for issuing and auto-renewing SSL certificates</li>
+                <li>Environment-driven secrets kept out of version control, with a checked-in template</li>
+                <li>Centralized nginx access and error logs</li>
             </ul>
             <p>
-                <a href="https://api.tarasantoniuk.com/swagger-ui/index.html" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Live API & Swagger</a> |
-                <a href="https://tarasantoniuk.com/exchange-rates/" target="_blank" rel="noopener"><i class="fas fa-exchange-alt"></i> Exchange Rates Demo</a> |
-                <a href="https://github.com/TarasAntoniuk/finance" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://github.com/TarasAntoniuk/server-prod" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <h3><i class="fas fa-shield-halved"></i> Random User API</h3>
+            <p>Spring Boot proxy service over an external REST API, built as a working reference for resilience patterns — every outbound call is wrapped in a Retry and a Circuit Breaker, with the breaker's state exposed through Actuator.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Java 21</span>
+                <span class="tech-tag">Spring Boot 3.5</span>
+                <span class="tech-tag">RestClient</span>
+                <span class="tech-tag">Resilience4j</span>
+                <span class="tech-tag">Bean Validation</span>
+                <span class="tech-tag">SpringDoc OpenAPI</span>
+                <span class="tech-tag">Actuator</span>
+            </div>
+            <p><strong>Resilience Configuration:</strong></p>
+            <ul>
+                <li>Retry — up to 3 attempts with a 1s delay on server errors and connectivity failures</li>
+                <li>Circuit Breaker — opens at a 50% failure rate over a sliding window of 10 calls, then waits 30s before half-open</li>
+                <li>Breaker health published at <code>/actuator/health</code></li>
+                <li>Configurable connect and read timeouts, and a request size cap</li>
+            </ul>
+            <p>
+                <a href="https://dev.to/taras_antoniuk_ea6a2fe7ee/circuit-breaker-retry-in-spring-boot-a-practical-guide-with-resilience4j-4hgf" target="_blank" rel="noopener"><i class="fab fa-dev"></i> Read the Article</a> |
+                <a href="https://github.com/TarasAntoniuk/random-user-api" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </p>
         </div>
 
         <div class="project-card animate-on-scroll">
             <h3><i class="fas fa-brain"></i> MCP Knowledge Base (GraphRAG)</h3>
-            <p>AI-powered code intelligence system that indexes Java codebases and exposes structural and semantic knowledge to Claude Code via the Model Context Protocol (MCP). Combines graph database (Neo4j) for code structure with vector database (ChromaDB) for semantic search, implementing the GraphRAG pattern.</p>
+            <p>AI-powered code intelligence system that indexes Java codebases and exposes structural and semantic knowledge to Claude Code via the Model Context Protocol (MCP). Combines a graph database (Neo4j) for code structure with a vector database (ChromaDB) for semantic search, implementing the GraphRAG pattern.</p>
             <div class="tech-stack">
                 <span class="tech-tag">Java 21</span>
-                <span class="tech-tag">Spring Boot 4.0.5</span>
+                <span class="tech-tag">Spring Boot</span>
                 <span class="tech-tag">Neo4j</span>
                 <span class="tech-tag">ChromaDB</span>
                 <span class="tech-tag">Ollama</span>
@@ -170,20 +243,18 @@
             </div>
             <p><strong>Architecture:</strong></p>
             <ul>
-                <li><strong>mcp-indexer</strong> — scans Java source code via AST parsing (JavaParser), stores class/method graph in Neo4j and semantic embeddings in ChromaDB</li>
+                <li><strong>mcp-indexer</strong> — scans Java source code via AST parsing (JavaParser), stores the class/method graph in Neo4j and semantic embeddings in ChromaDB</li>
                 <li><strong>mcp-bridge</strong> — MCP server exposing 5 tools to Claude Code: class search, dependency graph, package browsing, semantic search, and GraphRAG (vector + graph enrichment)</li>
             </ul>
             <p><strong>Key Features:</strong></p>
             <ul>
-                <li>GraphRAG: semantic search enriched with dependency graph from Neo4j</li>
+                <li>GraphRAG: semantic search enriched with the dependency graph from Neo4j</li>
                 <li>Neo4j graph schema: classes, methods, IMPORTS/EXTENDS/IMPLEMENTS relationships</li>
                 <li>Vector embeddings via Ollama (nomic-embed-text) for natural language code search</li>
                 <li>Dual transport: HTTP and SSE (Server-Sent Events) with session management</li>
                 <li>Extensible parser interface for multi-language support</li>
             </ul>
-            <p>
-                <a href="https://github.com/TarasAntoniuk/mcp-knowledge-base" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-            </p>
+            <p><em>Private repository — available on request.</em></p>
         </div>
 
         <div class="project-card animate-on-scroll">

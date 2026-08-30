@@ -41,7 +41,7 @@ const socialLinks = [
     { href: 'https://github.com/TarasAntoniuk/', label: 'GitHub', icon: 'fab fa-github' },
     { href: 'https://www.linkedin.com/in/taras-antoniuk-7a550816a/', label: 'LinkedIn', icon: 'fab fa-linkedin-in' },
     { href: 'https://www.hackerrank.com/profile/bronya2004', label: 'HackerRank', icon: 'fab fa-hackerrank' },
-    { href: 'https://dev.to/taras_antoniuk', label: 'DEV.to', icon: 'fab fa-dev' }
+    { href: 'https://dev.to/taras_antoniuk_ea6a2fe7ee', label: 'DEV.to', icon: 'fab fa-dev' }
 ];
 
 const FOOTER_TAGLINE = 'Senior Backend Java Developer specializing in REST APIs, microservices, and high-load enterprise systems.';

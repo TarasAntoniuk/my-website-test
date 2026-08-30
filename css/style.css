@@ -969,6 +969,7 @@ html.dark-mode .skill-tag {
     flex-wrap: wrap;
     gap: 6px;
     margin-top: 14px;
+    margin-bottom: 18px;
     padding-top: 14px;
     border-top: 1px solid var(--border-color);
 }
@@ -1675,4 +1676,20 @@ footer {
 
 .error-page .hero-cta {
     justify-content: center;
+}
+
+/* ===== INLINE CODE ===== */
+code {
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+    word-break: break-word;
+}
+
+html.dark-mode code {
+    background: rgba(139, 156, 247, 0.14);
+    color: var(--primary-light);
 }
