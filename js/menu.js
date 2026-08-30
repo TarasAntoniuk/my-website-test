@@ -1,46 +1,84 @@
-// Navigation structure with grouped items
-const menuStructure = [
-    { text: 'Home', href: '/', page: 'index' },
+// ===== Single source of truth for site navigation =====
+// Groups become dividers in the mobile menu. A group with a `dropdownLabel`
+// collapses into one desktop dropdown; without one, its items render flat.
+const navGroups = [
     {
-        text: 'About',
-        page: 'index',
-        submenu: [
-            { text: 'About Me', href: '/index.html#about' },
-            { text: 'Education', href: '/index.html#education' }
+        items: [
+            { text: 'Home', href: '/', page: 'index' },
+            {
+                text: 'About',
+                page: 'index',
+                submenu: [
+                    { text: 'About Me', href: '/index.html#about', showInMobile: true },
+                    { text: 'Education', href: '/index.html#education' }
+                ]
+            },
+            { text: 'Experience', href: '/experience/', page: 'experience' },
+            { text: 'Skills', href: '/skills/', page: 'skills' }
         ]
     },
-    { text: 'Experience', href: '/experience/', page: 'experience' },
-    { text: 'Skills', href: '/skills/', page: 'skills' },
     {
-        text: 'Portfolio',
-        submenu: [
+        dropdownLabel: 'Portfolio',
+        items: [
             { text: 'Projects', href: '/projects/', page: 'projects' },
             { text: 'Publications', href: '/publications/', page: 'publications' },
             { text: 'Certificates', href: '/certificates/', page: 'certificates' }
         ]
     },
-    { text: 'Exchange Rates', href: '/exchange-rates/', page: 'exchange-rates' },
-    { text: 'Hire Me', href: '/hire/', page: 'hire', className: 'nav-hire' }
+    {
+        items: [
+            { text: 'Exchange Rates', href: '/exchange-rates/', page: 'exchange-rates' }
+        ]
+    },
+    {
+        items: [
+            { text: 'Hire Me', href: '/hire/', page: 'hire', className: 'nav-hire' }
+        ]
+    }
 ];
 
-// Flat list for mobile menu
-const mobileMenuItems = [
-    { text: 'Home', href: '/', page: 'index' },
-    { text: 'About Me', href: '/index.html#about', page: 'index' },
-    { text: 'Experience', href: '/experience/', page: 'experience' },
-    { text: 'Skills', href: '/skills/', page: 'skills' },
-    { divider: true },
-    { text: 'Projects', href: '/projects/', page: 'projects' },
-    { text: 'Publications', href: '/publications/', page: 'publications' },
-    { text: 'Certificates', href: '/certificates/', page: 'certificates' },
-    { divider: true },
-    { text: 'Exchange Rates', href: '/exchange-rates/', page: 'exchange-rates' },
-    { divider: true },
-    { text: 'Hire Me', href: '/hire/', page: 'hire', className: 'nav-hire' }
+const socialLinks = [
+    { href: 'https://github.com/TarasAntoniuk/', label: 'GitHub', icon: 'fab fa-github' },
+    { href: 'https://www.linkedin.com/in/taras-antoniuk-7a550816a/', label: 'LinkedIn', icon: 'fab fa-linkedin-in' },
+    { href: 'https://www.hackerrank.com/profile/bronya2004', label: 'HackerRank', icon: 'fab fa-hackerrank' },
+    { href: 'https://dev.to/taras_antoniuk', label: 'DEV.to', icon: 'fab fa-dev' }
 ];
 
-function isPortfolioActive(currentPage) {
-    return ['projects', 'publications', 'certificates'].includes(currentPage);
+const FOOTER_TAGLINE = 'Senior Backend Java Developer specializing in REST APIs, microservices, and high-load enterprise systems.';
+const FOOTER_FIRST_COLUMN_SIZE = 4;
+
+function containsCurrentPage(items, currentPage) {
+    return items.some(item => item.page === currentPage ||
+        (item.submenu || []).some(sub => sub.page === currentPage));
+}
+
+function createNavLink(item, currentPage) {
+    const link = document.createElement('a');
+    link.href = item.href;
+    link.textContent = item.text;
+    if (item.page === currentPage) link.classList.add('active');
+    if (item.className) link.classList.add(item.className);
+    return link;
+}
+
+function createDropdown(label, items, currentPage) {
+    const dropdown = document.createElement('div');
+    dropdown.className = 'dropdown';
+
+    const dropbtn = document.createElement('a');
+    dropbtn.href = '#';
+    dropbtn.textContent = label;
+    dropbtn.className = 'dropbtn';
+    dropbtn.addEventListener('click', e => e.preventDefault());
+    if (containsCurrentPage(items, currentPage)) dropbtn.classList.add('active');
+
+    const dropdownContent = document.createElement('div');
+    dropdownContent.className = 'dropdown-content';
+    items.forEach(item => dropdownContent.appendChild(createNavLink(item, currentPage)));
+
+    dropdown.appendChild(dropbtn);
+    dropdown.appendChild(dropdownContent);
+    return dropdown;
 }
 
 // Create desktop navigation
@@ -48,110 +86,95 @@ function createMenu(currentPage) {
     const nav = document.querySelector('nav');
     if (!nav) return;
 
-    menuStructure.forEach(item => {
-        if (item.submenu) {
-            const dropdown = document.createElement('div');
-            dropdown.className = 'dropdown';
-
-            const dropbtn = document.createElement('a');
-            dropbtn.href = '#';
-            dropbtn.textContent = item.text;
-            dropbtn.className = 'dropbtn';
-            dropbtn.addEventListener('click', e => e.preventDefault());
-
-            const isActive = item.page === currentPage ||
-                item.submenu.some(sub => sub.page === currentPage);
-            if (isActive) dropbtn.classList.add('active');
-
-            const dropdownContent = document.createElement('div');
-            dropdownContent.className = 'dropdown-content';
-            item.submenu.forEach(sub => {
-                const link = document.createElement('a');
-                link.href = sub.href;
-                link.textContent = sub.text;
-                dropdownContent.appendChild(link);
-            });
-
-            dropdown.appendChild(dropbtn);
-            dropdown.appendChild(dropdownContent);
-            nav.appendChild(dropdown);
-        } else {
-            const link = document.createElement('a');
-            link.href = item.href;
-            link.textContent = item.text;
-            if (item.page === currentPage) link.classList.add('active');
-            if (item.className) link.classList.add(item.className);
-            nav.appendChild(link);
+    navGroups.forEach(group => {
+        if (group.dropdownLabel) {
+            nav.appendChild(createDropdown(group.dropdownLabel, group.items, currentPage));
+            return;
         }
+        group.items.forEach(item => {
+            if (item.submenu) {
+                nav.appendChild(createDropdown(item.text, item.submenu, currentPage));
+            } else {
+                nav.appendChild(createNavLink(item, currentPage));
+            }
+        });
     });
+}
 
+// Flatten the nav tree for the mobile panel: submenu entries appear only when
+// explicitly marked, and each group is separated by a divider.
+function flattenForMobile() {
+    return navGroups.map(group => group.items.flatMap(item => {
+        if (item.submenu) return item.submenu.filter(sub => sub.showInMobile);
+        return [item];
+    }));
+}
+
+// Every top-level destination, in nav order — used to build the footer columns.
+function flatDestinations() {
+    return navGroups.flatMap(group => group.items.filter(item => item.href));
 }
 
 // Create mobile navigation
 function createMobileMenu(currentPage) {
-    // Overlay
     const overlay = document.createElement('div');
     overlay.className = 'mobile-menu-overlay';
     overlay.id = 'mobileOverlay';
     document.body.appendChild(overlay);
 
-    // Mobile nav panel
     const mobileNav = document.createElement('div');
     mobileNav.className = 'mobile-nav';
     mobileNav.id = 'mobileNav';
 
-    mobileMenuItems.forEach(item => {
-        if (item.divider) {
+    flattenForMobile().forEach((groupItems, groupIndex) => {
+        if (groupIndex > 0) {
             const divider = document.createElement('div');
             divider.className = 'mobile-nav-divider';
             mobileNav.appendChild(divider);
-        } else {
-            const link = document.createElement('a');
-            link.href = item.href;
-            link.textContent = item.text;
-            if (item.page === currentPage) link.classList.add('active');
-            if (item.className) link.classList.add(item.className);
+        }
+        groupItems.forEach(item => {
+            const link = createNavLink(item, currentPage);
             link.addEventListener('click', closeMobileMenu);
             mobileNav.appendChild(link);
-        }
+        });
     });
 
     document.body.appendChild(mobileNav);
 
-    // Hamburger button
     const hamburger = document.createElement('button');
     hamburger.className = 'hamburger';
     hamburger.id = 'hamburgerBtn';
     hamburger.setAttribute('aria-label', 'Toggle menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', 'mobileNav');
     hamburger.innerHTML = '<span></span><span></span><span></span>';
     const header = document.querySelector('header');
     if (header) header.appendChild(hamburger);
 
-    // Event listeners
     hamburger.addEventListener('click', toggleMobileMenu);
     overlay.addEventListener('click', closeMobileMenu);
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMobileMenu();
+    });
+}
+
+function setMobileMenuOpen(isOpen) {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('mobileOverlay');
+
+    [hamburger, mobileNav, overlay].forEach(el => el && el.classList.toggle('active', isOpen));
+    if (hamburger) hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
 function toggleMobileMenu() {
-    const hamburger = document.getElementById('hamburgerBtn');
     const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.getElementById('mobileOverlay');
-
-    hamburger.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-    overlay.classList.toggle('active');
-    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    setMobileMenuOpen(!(mobileNav && mobileNav.classList.contains('active')));
 }
 
 function closeMobileMenu() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.getElementById('mobileOverlay');
-
-    if (hamburger) hamburger.classList.remove('active');
-    if (mobileNav) mobileNav.classList.remove('active');
-    if (overlay) overlay.classList.remove('active');
-    document.body.style.overflow = '';
+    setMobileMenuOpen(false);
 }
 
 // Create header
@@ -167,41 +190,44 @@ function createHeader(pageTitle, currentPage) {
     createMobileMenu(currentPage);
 }
 
+function socialLinksHtml() {
+    return socialLinks.map(({ href, label, icon }) =>
+        `<a href="${href}" target="_blank" rel="noopener" aria-label="${label}"><i class="${icon}"></i></a>`
+    ).join('\n                        ');
+}
+
+function footerColumnHtml(heading, items) {
+    const links = items.map(item => `<a href="${item.href}">${item.text}</a>`).join('\n                    ');
+    return `<div class="footer-links">
+                    <h4>${heading}</h4>
+                    ${links}
+                </div>`;
+}
+
 // Create footer
 function createFooter() {
     const footer = document.querySelector('footer');
     if (!footer) return;
+
+    const destinations = flatDestinations();
+    const primary = destinations.slice(0, FOOTER_FIRST_COLUMN_SIZE);
+    const secondary = destinations.slice(FOOTER_FIRST_COLUMN_SIZE);
 
     footer.innerHTML = `
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Taras Antoniuk</h3>
-                    <p>Senior Backend Java Developer specializing in REST APIs, microservices, and high-load enterprise systems.</p>
+                    <p>${FOOTER_TAGLINE}</p>
                     <div class="footer-social">
-                        <a href="https://github.com/TarasAntoniuk/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/taras-antoniuk-7a550816a/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.hackerrank.com/profile/bronya2004" target="_blank" aria-label="HackerRank"><i class="fab fa-hackerrank"></i></a>
-                        <a href="https://dev.to/taras_antoniuk" target="_blank" aria-label="DEV.to"><i class="fab fa-dev"></i></a>
+                        ${socialLinksHtml()}
                     </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Navigation</h4>
-                    <a href="/">Home</a>
-                    <a href="/experience/">Experience</a>
-                    <a href="/skills/">Skills</a>
-                    <a href="/projects/">Projects</a>
-                </div>
-                <div class="footer-links">
-                    <h4>More</h4>
-                    <a href="/publications/">Publications</a>
-                    <a href="/certificates/">Certificates</a>
-                    <a href="/exchange-rates/">Exchange Rates</a>
-                    <a href="/hire/">Hire Me</a>
-                </div>
+                ${footerColumnHtml('Navigation', primary)}
+                ${footerColumnHtml('More', secondary)}
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Taras Antoniuk. All rights reserved.
+                &copy; ${new Date().getFullYear()} Taras Antoniuk. All rights reserved.
             </div>
         </div>
     `;
@@ -221,11 +247,7 @@ function createScrollTop() {
     });
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
+        btn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
 }
 

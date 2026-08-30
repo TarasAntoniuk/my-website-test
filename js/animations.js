@@ -1,24 +1,19 @@
-// Dark Mode Toggle
+// Dark Mode Toggle — the theme itself is applied by js/theme.js in <head>
 const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
 
-if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    if (darkModeToggle) {
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
+function renderToggleIcon() {
+    if (!darkModeToggle) return;
+    darkModeToggle.innerHTML = window.Theme.isDark()
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
 }
+
+renderToggleIcon();
 
 if (darkModeToggle) {
     darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
+        window.Theme.toggle();
+        renderToggleIcon();
     });
 }
 

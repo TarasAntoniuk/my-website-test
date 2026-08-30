@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 async function fetchCurrencyRates(date) {
     try {
-        console.log('Fetching rates for date:', date);
 
         loadingMessage.style.display = 'block';
         errorMessage.style.display = 'none';
@@ -38,12 +37,8 @@ async function fetchCurrencyRates(date) {
         // EUR currency ID = 2
         const euroId = 2;
         const url = `https://api.tarasantoniuk.com/api/exchange-rates/latest/${date}?currencyFromId=${euroId}`;
-        console.log('API URL:', url);
 
         const response = await fetch(url);
-
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -52,8 +47,6 @@ async function fetchCurrencyRates(date) {
         }
 
         const data = await response.json();
-        console.log('Data received:', data);
-        console.log('Number of rates:', data.length);
 
         displayRates(data);
 
@@ -124,5 +117,4 @@ function displayRates(data) {
     loadingMessage.style.display = 'none';
     ratesTable.style.display = 'table';
 
-    console.log('Rates displayed successfully');
 }

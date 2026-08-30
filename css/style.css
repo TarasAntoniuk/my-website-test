@@ -49,7 +49,7 @@
 }
 
 /* ===== DARK MODE ===== */
-body.dark-mode {
+html.dark-mode {
     --bg-color: #0f172a;
     --bg-gradient: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
     --text-color: #e2e8f0;
@@ -144,12 +144,12 @@ body {
     color: var(--primary-color);
 }
 
-body.dark-mode .dark-mode-toggle {
+html.dark-mode .dark-mode-toggle {
     border-color: #f59e0b;
     color: #f59e0b;
 }
 
-body.dark-mode .dark-mode-toggle:hover {
+html.dark-mode .dark-mode-toggle:hover {
     background: rgba(245, 158, 11, 0.1);
 }
 
@@ -959,7 +959,7 @@ a:hover {
     border-color: var(--primary-light);
 }
 
-body.dark-mode .skill-tag {
+html.dark-mode .skill-tag {
     background: rgba(102, 126, 234, 0.15);
 }
 
@@ -988,7 +988,7 @@ body.dark-mode .skill-tag {
     background: rgba(102, 126, 234, 0.15);
 }
 
-body.dark-mode .tech-tag {
+html.dark-mode .tech-tag {
     background: rgba(102, 126, 234, 0.15);
     border-color: rgba(102, 126, 234, 0.3);
 }
@@ -1029,7 +1029,7 @@ body.dark-mode .tech-tag {
     color: var(--text-muted);
 }
 
-body.dark-mode .publication-header i {
+html.dark-mode .publication-header i {
     color: var(--text-secondary);
 }
 
@@ -1622,4 +1622,57 @@ footer {
     .stat-label {
         font-size: 0.75em;
     }
+}
+
+/* ===== NOSCRIPT NAVIGATION FALLBACK ===== */
+.noscript-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    padding: 16px 24px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.noscript-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.noscript-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* ===== 404 PAGE ===== */
+.error-page {
+    text-align: center;
+    padding: 64px 24px;
+}
+
+.error-code {
+    font-family: var(--font-heading);
+    font-size: clamp(6rem, 18vw, 11rem);
+    font-weight: 700;
+    line-height: 1;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.error-page h2 {
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.error-page p {
+    max-width: 520px;
+    margin: 12px auto 28px;
+    color: var(--text-secondary);
+}
+
+.error-page .hero-cta {
+    justify-content: center;
 }
